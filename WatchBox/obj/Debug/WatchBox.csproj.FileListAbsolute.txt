@@ -1,0 +1,11 @@
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\bin\Debug\WatchBox.exe.config
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\bin\Debug\WatchBox.exe
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\bin\Debug\WatchBox.pdb
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.csproj.AssemblyReference.cache
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.csproj.SuggestedBindingRedirects.cache
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.Properties.Resources.resources
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.csproj.GenerateResource.cache
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.csproj.CoreCompileInputs.cache
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.exe
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.pdb
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.Login.resources
