@@ -10,29 +10,26 @@ using System.Windows.Forms;
 
 namespace WatchBox
 {
-    public partial class Login : Form
+    public partial class Home : Form
     {
-        public Login()
+        public Home()
         {
             InitializeComponent();
+            populateMovies();
         }
-
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void populateMovies()
         {
-            string username = tbUsername.Text;
-            string password = tbPassword.Text;
+            MovieControl movieControl = new MovieControl();
 
-            if (username == "teste" && password == "123")
-            {
-                Home home = new Home();
-                this.Hide();
-                home.Show();
-            }
+            movieControl.Name = "Frieren: Beyond Journey's End";
+            movieControl.Rating = "9.8/10";
+
+            flowLayoutPanel.Controls.Add(movieControl);
         }
     }
 }
