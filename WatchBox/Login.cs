@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,8 @@ namespace WatchBox
         public Login()
         {
             InitializeComponent();
+            populateRecomendations();
+            fetchPosters();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -32,6 +35,29 @@ namespace WatchBox
                 Movies home = new Movies();
                 this.Hide();
                 home.Show();
+            }
+        }
+
+        private void populateRecomendations()
+        {
+            Random rnd  = new Random();
+            Data.chosenMovies = Data.movieRecomendations
+                                  .OrderBy(x => rnd.Next())
+                                  .Take(5)
+                                  .ToList();
+        }
+
+        private async void fetchPosters()
+        {
+            foreach (var movie in Data.chosenMovies)
+            {
+                string posterUrl = movie["Poster"].ToString();
+
+                using (var webClient = new HttpClient())
+                {
+                    byte[] imageBytes = await webClient.GetByteArrayAsync(posterUrl);
+                    Data.chosenPosters.Add(imageBytes);
+                }
             }
         }
     }

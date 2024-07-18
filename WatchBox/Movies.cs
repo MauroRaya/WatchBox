@@ -19,37 +19,29 @@ namespace WatchBox
         public Movies()
         {
             InitializeComponent();
-            populateMovies();
+            displayRecomendations();
         }
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private async void populateMovies()
+        private void displayRecomendations()
         {
-            List<Task> fetchTasks = new List<Task>();
+            Random rnd       = new Random();
+            var chosenMovies = Data.movieRecomendations
+                                  .OrderBy(x => rnd.Next())
+                                  .Take(5)
+                                  .ToList();
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++) 
             {
-                string movieTitle = Requests.getRandomMovie(Data.movieSuggestions);
-                fetchTasks.Add(Requests.fetchMovies(movieTitle));
-            }
+                var movie = Data.chosenMovies[i];
 
-            await Task.WhenAll(fetchTasks);
-
-            foreach (JObject movie in Requests.movies)
-            {
                 MovieControl movieControl = new MovieControl();
                 movieControl.Name   = movie["Title"].ToString();
-                movieControl.Rating = movie["imdbRating"].ToString() + "/10";
-
-                string posterUrl     = movie["Poster"].ToString();
-                using (var webClient = new HttpClient())
-                {
-                    byte[] imageBytes   = await webClient.GetByteArrayAsync(posterUrl);
-                    movieControl.Poster = Image.FromStream(new System.IO.MemoryStream(imageBytes));
-                }
+                movieControl.Rating = movie["Rating"].ToString() + "/10";
+                movieControl.Poster = Image.FromStream(new System.IO.MemoryStream(Data.chosenPosters[i]));
 
                 flowLayoutPanel.Controls.Add(movieControl);
             }

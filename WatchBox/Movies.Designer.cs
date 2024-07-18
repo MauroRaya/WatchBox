@@ -57,7 +57,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1056, 47);
+            this.panel1.Size = new System.Drawing.Size(1067, 47);
             this.panel1.TabIndex = 0;
             // 
             // btnShows
@@ -129,9 +129,9 @@
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(1022, 1);
+            this.btnExit.Location = new System.Drawing.Point(1018, 1);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(34, 35);
+            this.btnExit.Size = new System.Drawing.Size(31, 35);
             this.btnExit.TabIndex = 12;
             this.btnExit.Text = "X";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -189,7 +189,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(36)))), ((int)(((byte)(35)))));
-            this.ClientSize = new System.Drawing.Size(1056, 595);
+            this.ClientSize = new System.Drawing.Size(1067, 595);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.tbMovieName);
             this.Controls.Add(this.flowLayoutPanel);
