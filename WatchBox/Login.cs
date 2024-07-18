@@ -29,7 +29,7 @@ namespace WatchBox
 
             if (username == "teste" && password == "123")
             {
-                Home home = new Home();
+                Movies home = new Movies();
                 this.Hide();
                 home.Show();
             }

@@ -9,5 +9,8 @@ C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.csproj.CoreCompileIn
 C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.exe
 C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.pdb
 C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.Login.resources
-C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.Home.resources
 C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.MovieControl.resources
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.csproj.CopyComplete
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.Movies.resources
