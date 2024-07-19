@@ -14,3 +14,4 @@ C:\Users\Mauro\Desktop\WatchBox\WatchBox\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Mauro\Desktop\WatchBox\WatchBox\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.csproj.CopyComplete
 C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.Movies.resources
+C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.TvShows.resources

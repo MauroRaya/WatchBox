@@ -45,6 +45,11 @@ namespace WatchBox
                                   .OrderBy(x => rnd.Next())
                                   .Take(5)
                                   .ToList();
+
+            Data.chosenTvShows = Data.tvShowRecommendations
+                                  .OrderBy(x => rnd.Next())
+                                  .Take(5)
+                                  .ToList();
         }
 
         private async void fetchPosters()
@@ -56,7 +61,18 @@ namespace WatchBox
                 using (var webClient = new HttpClient())
                 {
                     byte[] imageBytes = await webClient.GetByteArrayAsync(posterUrl);
-                    Data.chosenPosters.Add(imageBytes);
+                    Data.chosenMoviePosters.Add(imageBytes);
+                }
+            }
+
+            foreach (var show in Data.chosenTvShows)
+            {
+                string posterUrl = show["Poster"].ToString();
+
+                using (var webClient = new HttpClient())
+                {
+                    byte[] imageBytes = await webClient.GetByteArrayAsync(posterUrl);
+                    Data.chosenTvShowPosters.Add(imageBytes);
                 }
             }
         }

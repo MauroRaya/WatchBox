@@ -50,6 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data.cs" />
+    <Compile Include="TvShows.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TvShows.Designer.cs">
+      <DependentUpon>TvShows.cs</DependentUpon>
+    </Compile>
     <Compile Include="Movies.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests.cs" />
+    <EmbeddedResource Include="TvShows.resx">
+      <DependentUpon>TvShows.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Movies.resx">
       <DependentUpon>Movies.cs</DependentUpon>
     </EmbeddedResource>

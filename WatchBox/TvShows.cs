@@ -14,9 +14,9 @@ using System.Xml.Linq;
 
 namespace WatchBox
 {
-    public partial class Movies : Form
+    public partial class TvShows : Form
     {
-        public Movies()
+        public TvShows()
         {
             InitializeComponent();
             displayRecomendations();
@@ -30,21 +30,21 @@ namespace WatchBox
         {
             for (int i = 0; i < 5; i++) 
             {
-                var movie = Data.chosenMovies[i];
+                var show = Data.chosenTvShows[i];
 
-                MovieControl movieControl = new MovieControl();
-                movieControl.Name   = movie["Title"].ToString();
-                movieControl.Rating = movie["Rating"].ToString() + "/10";
-                movieControl.Poster = Image.FromStream(new System.IO.MemoryStream(Data.chosenMoviePosters[i]));
+                MovieControl showControl = new MovieControl();
+                showControl.Name   = show["Title"].ToString();
+                showControl.Rating = show["Rating"].ToString() + "/10";
+                showControl.Poster = Image.FromStream(new System.IO.MemoryStream(Data.chosenTvShowPosters[i]));
 
-                flowLayoutPanel.Controls.Add(movieControl);
+                flowLayoutPanel.Controls.Add(showControl);
             }
         }
 
-        private void btnShows_Click(object sender, EventArgs e)
+        private void btnMovies_Click(object sender, EventArgs e)
         {
-            TvShows tvShowsPage = new TvShows();
-            tvShowsPage.Show();
+            Movies moviesPage = new Movies();
+            moviesPage.Show();
             this.Hide();
         }
     }

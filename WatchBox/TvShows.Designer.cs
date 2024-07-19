@@ -1,6 +1,6 @@
 ﻿namespace WatchBox
 {
-    partial class Movies
+    partial class TvShows
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Movies));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TvShows));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnShows = new System.Windows.Forms.Button();
             this.btnShare = new System.Windows.Forms.Button();
@@ -38,9 +38,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.tbMovieName = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.tbMovieName = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -75,7 +75,6 @@
             this.btnShows.TabIndex = 14;
             this.btnShows.Text = "Shows";
             this.btnShows.UseVisualStyleBackColor = false;
-            this.btnShows.Click += new System.EventHandler(this.btnShows_Click);
             // 
             // btnShare
             // 
@@ -121,6 +120,7 @@
             this.btnMovies.TabIndex = 6;
             this.btnMovies.Text = "Movies";
             this.btnMovies.UseVisualStyleBackColor = false;
+            this.btnMovies.Click += new System.EventHandler(this.btnMovies_Click);
             // 
             // btnExit
             // 
@@ -168,24 +168,6 @@
             this.flowLayoutPanel.Size = new System.Drawing.Size(1004, 456);
             this.flowLayoutPanel.TabIndex = 1;
             // 
-            // tbMovieName
-            // 
-            this.tbMovieName.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMovieName.Location = new System.Drawing.Point(644, 65);
-            this.tbMovieName.Name = "tbMovieName";
-            this.tbMovieName.Size = new System.Drawing.Size(286, 29);
-            this.tbMovieName.TabIndex = 2;
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(942, 65);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(81, 29);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "search";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -194,11 +176,29 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(19, 69);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(237, 26);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Movie Recomendations";
+            this.label1.Size = new System.Drawing.Size(260, 26);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "TV Show Recomendations";
             // 
-            // Movies
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(942, 65);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(81, 29);
+            this.button3.TabIndex = 17;
+            this.button3.Text = "search";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // tbMovieName
+            // 
+            this.tbMovieName.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMovieName.Location = new System.Drawing.Point(644, 65);
+            this.tbMovieName.Name = "tbMovieName";
+            this.tbMovieName.Size = new System.Drawing.Size(286, 29);
+            this.tbMovieName.TabIndex = 16;
+            // 
+            // TvShows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -210,7 +210,7 @@
             this.Controls.Add(this.flowLayoutPanel);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Movies";
+            this.Name = "TvShows";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
             this.panel1.ResumeLayout(false);
@@ -231,9 +231,9 @@
         private System.Windows.Forms.Button btnFavorites;
         private System.Windows.Forms.Button btnMovies;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
-        private System.Windows.Forms.TextBox tbMovieName;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnShows;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox tbMovieName;
     }
 }
