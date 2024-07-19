@@ -28,12 +28,6 @@ namespace WatchBox
 
         private void displayRecomendations()
         {
-            Random rnd       = new Random();
-            var chosenMovies = Data.movieRecomendations
-                                  .OrderBy(x => rnd.Next())
-                                  .Take(5)
-                                  .ToList();
-
             for (int i = 0; i < 5; i++) 
             {
                 var movie = Data.chosenMovies[i];
