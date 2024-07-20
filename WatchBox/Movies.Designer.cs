@@ -31,15 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Movies));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnShows = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.btnShare = new System.Windows.Forms.Button();
+            this.tbMovieName = new System.Windows.Forms.TextBox();
             this.btnFavorites = new System.Windows.Forms.Button();
             this.btnMovies = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.tbMovieName = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -49,7 +49,9 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel1.Controls.Add(this.btnShows);
+            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.btnShare);
+            this.panel1.Controls.Add(this.tbMovieName);
             this.panel1.Controls.Add(this.btnFavorites);
             this.panel1.Controls.Add(this.btnMovies);
             this.panel1.Controls.Add(this.btnExit);
@@ -67,15 +69,25 @@
             this.btnShows.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnShows.FlatAppearance.BorderSize = 0;
             this.btnShows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShows.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShows.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShows.ForeColor = System.Drawing.Color.White;
-            this.btnShows.Location = new System.Drawing.Point(312, -1);
+            this.btnShows.Location = new System.Drawing.Point(716, -1);
             this.btnShows.Name = "btnShows";
-            this.btnShows.Size = new System.Drawing.Size(86, 47);
+            this.btnShows.Size = new System.Drawing.Size(83, 47);
             this.btnShows.TabIndex = 14;
             this.btnShows.Text = "Shows";
             this.btnShows.UseVisualStyleBackColor = false;
             this.btnShows.Click += new System.EventHandler(this.btnShows_Click);
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(486, 10);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(81, 29);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "search";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // btnShare
             // 
@@ -83,14 +95,22 @@
             this.btnShare.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnShare.FlatAppearance.BorderSize = 0;
             this.btnShare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShare.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShare.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShare.ForeColor = System.Drawing.Color.White;
-            this.btnShare.Location = new System.Drawing.Point(499, -1);
+            this.btnShare.Location = new System.Drawing.Point(903, -1);
             this.btnShare.Name = "btnShare";
             this.btnShare.Size = new System.Drawing.Size(72, 47);
             this.btnShare.TabIndex = 7;
             this.btnShare.Text = "Share";
             this.btnShare.UseVisualStyleBackColor = false;
+            // 
+            // tbMovieName
+            // 
+            this.tbMovieName.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMovieName.Location = new System.Drawing.Point(188, 10);
+            this.tbMovieName.Name = "tbMovieName";
+            this.tbMovieName.Size = new System.Drawing.Size(286, 29);
+            this.tbMovieName.TabIndex = 2;
             // 
             // btnFavorites
             // 
@@ -98,9 +118,9 @@
             this.btnFavorites.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFavorites.FlatAppearance.BorderSize = 0;
             this.btnFavorites.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFavorites.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFavorites.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFavorites.ForeColor = System.Drawing.Color.White;
-            this.btnFavorites.Location = new System.Drawing.Point(393, -1);
+            this.btnFavorites.Location = new System.Drawing.Point(796, -1);
             this.btnFavorites.Name = "btnFavorites";
             this.btnFavorites.Size = new System.Drawing.Size(110, 47);
             this.btnFavorites.TabIndex = 13;
@@ -109,13 +129,13 @@
             // 
             // btnMovies
             // 
-            this.btnMovies.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            this.btnMovies.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.btnMovies.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMovies.FlatAppearance.BorderSize = 0;
             this.btnMovies.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMovies.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMovies.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMovies.ForeColor = System.Drawing.Color.White;
-            this.btnMovies.Location = new System.Drawing.Point(230, -1);
+            this.btnMovies.Location = new System.Drawing.Point(634, -1);
             this.btnMovies.Name = "btnMovies";
             this.btnMovies.Size = new System.Drawing.Size(86, 47);
             this.btnMovies.TabIndex = 6;
@@ -145,7 +165,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(40, 13);
+            this.label2.Location = new System.Drawing.Point(52, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 22);
             this.label2.TabIndex = 10;
@@ -154,7 +174,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(-1, 1);
+            this.pictureBox2.Location = new System.Drawing.Point(11, 1);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(48, 43);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -167,24 +187,6 @@
             this.flowLayoutPanel.Name = "flowLayoutPanel";
             this.flowLayoutPanel.Size = new System.Drawing.Size(1004, 456);
             this.flowLayoutPanel.TabIndex = 1;
-            // 
-            // tbMovieName
-            // 
-            this.tbMovieName.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMovieName.Location = new System.Drawing.Point(644, 65);
-            this.tbMovieName.Name = "tbMovieName";
-            this.tbMovieName.Size = new System.Drawing.Size(286, 29);
-            this.tbMovieName.TabIndex = 2;
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(942, 65);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(81, 29);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "search";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -202,11 +204,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(36)))), ((int)(((byte)(35)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(43)))), ((int)(((byte)(42)))));
             this.ClientSize = new System.Drawing.Size(1052, 595);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.tbMovieName);
             this.Controls.Add(this.flowLayoutPanel);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -232,8 +232,8 @@
         private System.Windows.Forms.Button btnMovies;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
         private System.Windows.Forms.TextBox tbMovieName;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnShows;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button3;
     }
 }

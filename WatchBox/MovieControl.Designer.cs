@@ -54,16 +54,16 @@
             this.lbName.ForeColor = System.Drawing.Color.White;
             this.lbName.Location = new System.Drawing.Point(1, 299);
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(193, 74);
+            this.lbName.Size = new System.Drawing.Size(193, 51);
             this.lbName.TabIndex = 1;
             this.lbName.Text = "Frieren: Beyond Journey\'s End";
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(102, 372);
+            this.pictureBox2.Location = new System.Drawing.Point(108, 374);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(28, 27);
+            this.pictureBox2.Size = new System.Drawing.Size(23, 24);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
@@ -83,7 +83,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(54)))), ((int)(((byte)(51)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(77)))), ((int)(((byte)(75)))));
             this.Controls.Add(this.lbRating);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lbName);

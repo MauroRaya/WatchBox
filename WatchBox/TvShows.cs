@@ -41,7 +41,7 @@ namespace WatchBox
             }
         }
 
-        private void btnMovies_Click(object sender, EventArgs e)
+        private void btnMovies_Click_1(object sender, EventArgs e)
         {
             Movies moviesPage = new Movies();
             moviesPage.Show();
