@@ -30,9 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TvShows));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnShows = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnShare = new System.Windows.Forms.Button();
@@ -41,6 +38,9 @@
             this.btnMovies = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -62,42 +62,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1052, 47);
             this.panel1.TabIndex = 0;
-            // 
-            // btnExit
-            // 
-            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExit.FlatAppearance.BorderSize = 0;
-            this.btnExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(1018, 1);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(31, 35);
-            this.btnExit.TabIndex = 12;
-            this.btnExit.Text = "X";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // flowLayoutPanel
-            // 
-            this.flowLayoutPanel.Location = new System.Drawing.Point(23, 115);
-            this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(1004, 456);
-            this.flowLayoutPanel.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(19, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(260, 26);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "TV Show Recomendations";
             // 
             // btnShows
             // 
@@ -161,6 +125,7 @@
             this.btnFavorites.TabIndex = 21;
             this.btnFavorites.Text = "Favorites";
             this.btnFavorites.UseVisualStyleBackColor = false;
+            this.btnFavorites.Click += new System.EventHandler(this.btnFavorites_Click);
             // 
             // btnMovies
             // 
@@ -199,6 +164,42 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 20;
             this.pictureBox2.TabStop = false;
+            // 
+            // btnExit
+            // 
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Location = new System.Drawing.Point(1018, 1);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(31, 35);
+            this.btnExit.TabIndex = 12;
+            this.btnExit.Text = "X";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // flowLayoutPanel
+            // 
+            this.flowLayoutPanel.Location = new System.Drawing.Point(23, 115);
+            this.flowLayoutPanel.Name = "flowLayoutPanel";
+            this.flowLayoutPanel.Size = new System.Drawing.Size(1004, 456);
+            this.flowLayoutPanel.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(19, 69);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(260, 26);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "TV Show Recomendations";
             // 
             // TvShows
             // 

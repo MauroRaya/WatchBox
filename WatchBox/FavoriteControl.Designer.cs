@@ -1,6 +1,6 @@
 ﻿namespace WatchBox
 {
-    partial class MovieControl
+    partial class FavoriteControl
     {
         /// <summary> 
         /// Variável de designer necessária.
@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MovieControl));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FavoriteControl));
             this.pbPoster = new System.Windows.Forms.PictureBox();
             this.lbName = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lbRating = new System.Windows.Forms.Label();
-            this.pbFavorite = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbPoster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFavorite)).BeginInit();
             this.SuspendLayout();
             // 
             // pbPoster
@@ -82,32 +80,19 @@
             this.lbRating.TabIndex = 3;
             this.lbRating.Text = "9,8/10";
             // 
-            // pbFavorite
-            // 
-            this.pbFavorite.Image = ((System.Drawing.Image)(resources.GetObject("pbFavorite.Image")));
-            this.pbFavorite.Location = new System.Drawing.Point(163, 362);
-            this.pbFavorite.Name = "pbFavorite";
-            this.pbFavorite.Size = new System.Drawing.Size(26, 26);
-            this.pbFavorite.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbFavorite.TabIndex = 4;
-            this.pbFavorite.TabStop = false;
-            this.pbFavorite.Click += new System.EventHandler(this.pbFavorite_Click);
-            // 
-            // MovieControl
+            // FavoriteControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(77)))), ((int)(((byte)(75)))));
-            this.Controls.Add(this.pbFavorite);
             this.Controls.Add(this.lbRating);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lbName);
             this.Controls.Add(this.pbPoster);
-            this.Name = "MovieControl";
+            this.Name = "FavoriteControl";
             this.Size = new System.Drawing.Size(193, 394);
             ((System.ComponentModel.ISupportInitialize)(this.pbPoster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFavorite)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,6 +104,5 @@
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lbRating;
-        private System.Windows.Forms.PictureBox pbFavorite;
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -14,32 +15,35 @@ using System.Xml.Linq;
 
 namespace WatchBox
 {
-    public partial class TvShows : Form
+    public partial class Favorites : Form
     {
-        public TvShows()
+        public Favorites()
         {
             InitializeComponent();
-            displayRecomendations();
+            displayFavorites();
         }
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void displayRecomendations()
+        private void displayFavorites()
         {
-            for (int i = 0; i < 5; i++) 
+            foreach (var movie in Data.favorites)
             {
-                var show = Data.chosenTvShows[i];
+                FavoriteControl favoriteControl = new FavoriteControl();
+                favoriteControl.Name = movie["Title"];
 
-                MovieControl showControl = new MovieControl();
-                showControl.Name   = show["Title"].ToString();
-                showControl.Rating = show["Rating"].ToString() + "/10";
-                showControl.Poster = Image.FromStream(new System.IO.MemoryStream(Data.chosenTvShowPosters[i]));
+                byte[] imageBytes = Convert.FromBase64String(movie["Poster"]);
+                using (MemoryStream ms = new MemoryStream(imageBytes))
+                {
+                    favoriteControl.Poster = Image.FromStream(ms);
+                }
 
-                flowLayoutPanel.Controls.Add(showControl);
+                flowLayoutPanel.Controls.Add(favoriteControl);
             }
         }
+
 
         private void btnMovies_Click_1(object sender, EventArgs e)
         {
@@ -48,10 +52,10 @@ namespace WatchBox
             this.Hide();
         }
 
-        private void btnFavorites_Click(object sender, EventArgs e)
+        private void btnShows_Click(object sender, EventArgs e)
         {
-            Favorites favoritesPage = new Favorites();
-            favoritesPage.Show();
+            TvShows showsPage = new TvShows();
+            showsPage.Show();
             this.Hide();
         }
     }

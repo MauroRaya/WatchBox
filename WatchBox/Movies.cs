@@ -37,6 +37,11 @@ namespace WatchBox
                 movieControl.Rating = movie["Rating"].ToString() + "/10";
                 movieControl.Poster = Image.FromStream(new System.IO.MemoryStream(Data.chosenMoviePosters[i]));
 
+                if (Data.favorites.Any(dict => dict["Title"] == movie["Title"].ToString()))
+                {
+                    movieControl.changeStar();
+                }
+
                 flowLayoutPanel.Controls.Add(movieControl);
             }
         }
@@ -45,6 +50,13 @@ namespace WatchBox
         {
             TvShows tvShowsPage = new TvShows();
             tvShowsPage.Show();
+            this.Hide();
+        }
+
+        private void btnFavorites_Click(object sender, EventArgs e)
+        {
+            Favorites favoritesPage = new Favorites();
+            favoritesPage.Show();
             this.Hide();
         }
     }

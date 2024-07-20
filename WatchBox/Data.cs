@@ -9,6 +9,8 @@ namespace WatchBox
 {
     public static class Data
     {
+        public static List<Dictionary<string, string>> favorites = new List<Dictionary<string, string>>();
+
         public static List<byte[]> chosenMoviePosters = new List<byte[]>();
 
         public static List<Dictionary<string, string>> chosenMovies = new List<Dictionary<string, string>>();
