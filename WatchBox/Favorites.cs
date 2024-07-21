@@ -29,9 +29,11 @@ namespace WatchBox
 
         private void displayFavorites()
         {
+            flowLayoutPanel.Controls.Clear();
+
             foreach (var movie in Data.favorites)
             {
-                FavoriteControl favoriteControl = new FavoriteControl();
+                MovieControl favoriteControl = new MovieControl();
                 favoriteControl.Name = movie["Title"];
 
                 byte[] imageBytes = Convert.FromBase64String(movie["Poster"]);
@@ -40,7 +42,25 @@ namespace WatchBox
                     favoriteControl.Poster = Image.FromStream(ms);
                 }
 
+                if (Data.favorites.Any(dict => dict["Title"] == movie["Title"].ToString()))
+                {
+                    favoriteControl.changeStar();
+                }
+
                 flowLayoutPanel.Controls.Add(favoriteControl);
+            }
+        }
+
+        public void removeFavorite(string title)
+        {
+            foreach (Control control in flowLayoutPanel.Controls)
+            {
+                if (control is MovieControl movieControl && movieControl.Name == title)
+                {
+                    flowLayoutPanel.Controls.Remove(movieControl);
+                    movieControl.Dispose();
+                    break;
+                }
             }
         }
 

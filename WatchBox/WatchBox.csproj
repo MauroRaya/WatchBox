@@ -56,12 +56,6 @@
     <Compile Include="Favorites.Designer.cs">
       <DependentUpon>Favorites.cs</DependentUpon>
     </Compile>
-    <Compile Include="FavoriteControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FavoriteControl.Designer.cs">
-      <DependentUpon>FavoriteControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="TvShows.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,12 +82,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests.cs" />
+    <Compile Include="Search.cs" />
     <EmbeddedResource Include="Favorites.resx">
       <DependentUpon>Favorites.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FavoriteControl.resx">
-      <DependentUpon>FavoriteControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TvShows.resx">
       <DependentUpon>TvShows.cs</DependentUpon>

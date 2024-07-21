@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace WatchBox
 {
-    public static class Requests
+    public static class Search
     {
         private static readonly HttpClient client = new HttpClient();
 

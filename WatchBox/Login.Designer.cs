@@ -53,7 +53,7 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(43)))), ((int)(((byte)(42)))));
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(46)))), ((int)(((byte)(77)))));
-            this.label1.Location = new System.Drawing.Point(393, 100);
+            this.label1.Location = new System.Drawing.Point(393, 99);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 20);
             this.label1.TabIndex = 0;
@@ -62,7 +62,7 @@
             // tbUsername
             // 
             this.tbUsername.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbUsername.Location = new System.Drawing.Point(400, 123);
+            this.tbUsername.Location = new System.Drawing.Point(400, 122);
             this.tbUsername.Name = "tbUsername";
             this.tbUsername.Size = new System.Drawing.Size(187, 33);
             this.tbUsername.TabIndex = 1;
@@ -95,7 +95,7 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(48, 265);
+            this.btnLogin.Location = new System.Drawing.Point(48, 266);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(188, 37);
             this.btnLogin.TabIndex = 5;
@@ -109,7 +109,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(56, 20);
+            this.label2.Location = new System.Drawing.Point(46, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 26);
             this.label2.TabIndex = 3;
@@ -118,7 +118,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(2, 3);
+            this.pictureBox2.Location = new System.Drawing.Point(-8, -3);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(67, 55);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -130,7 +130,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(105, 20);
+            this.label4.Location = new System.Drawing.Point(108, 14);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 26);
             this.label4.TabIndex = 8;
@@ -177,7 +177,7 @@
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(250, 1);
+            this.btnExit.Location = new System.Drawing.Point(261, 0);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(24, 27);
             this.btnExit.TabIndex = 9;
@@ -202,7 +202,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(16, 88);
+            this.label5.Location = new System.Drawing.Point(9, 83);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(294, 60);
             this.label5.TabIndex = 11;

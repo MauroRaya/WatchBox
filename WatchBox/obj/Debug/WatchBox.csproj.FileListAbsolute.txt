@@ -16,4 +16,3 @@ C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.csproj.CopyComplete
 C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.Movies.resources
 C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.TvShows.resources
 C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.Favorites.resources
-C:\Users\Mauro\Desktop\WatchBox\WatchBox\obj\Debug\WatchBox.FavoriteControl.resources

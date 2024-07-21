@@ -54,10 +54,11 @@ namespace WatchBox
             else
             {
                 removeFromFavorites();
+                ((Favorites)this.FindForm()).removeFavorite(lbName.Text);
             }
 
-            string message = favoriteState == "favorite" ? "Saved to your favorites!" : "Removed from your favorites";
-            MessageBox.Show(message);
+            //string message = favoriteState == "favorite" ? "Saved to your favorites!" : "Removed from your favorites";
+            //MessageBox.Show(message);
         }
 
         public void changeStar()

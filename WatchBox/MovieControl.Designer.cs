@@ -64,7 +64,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(1, 357);
+            this.pictureBox2.Location = new System.Drawing.Point(1, 360);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(32, 31);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -76,7 +76,7 @@
             this.lbRating.AutoSize = true;
             this.lbRating.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
             this.lbRating.ForeColor = System.Drawing.Color.White;
-            this.lbRating.Location = new System.Drawing.Point(31, 362);
+            this.lbRating.Location = new System.Drawing.Point(27, 367);
             this.lbRating.Name = "lbRating";
             this.lbRating.Size = new System.Drawing.Size(63, 22);
             this.lbRating.TabIndex = 3;

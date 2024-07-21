@@ -9,7 +9,9 @@ namespace WatchBox
 {
     public static class Data
     {
-        public static List<Dictionary<string, string>> favorites = new List<Dictionary<string, string>>();
+        public static List<Dictionary<string, string>> favorites = new List<Dictionary<string, string>>(); //turn into a db table later
+
+
 
         public static List<byte[]> chosenMoviePosters = new List<byte[]>();
 
@@ -69,7 +71,7 @@ namespace WatchBox
             {
                 { "Title", "Whiplash" },
                 { "Rating", "8.5" },
-                { "Poster", @"https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg" }
+                { "Poster", @"https://m.media-amazon.com/images/I/61PwPadu4-L._AC_UF894,1000_QL80_.jpg" }
             },
             new Dictionary<string, string>
             {
@@ -94,7 +96,26 @@ namespace WatchBox
                 { "Title", "Harry Potter and the Philosopher's Stone" },
                 { "Rating", "7.6" },
                 { "Poster", @"https://m.media-amazon.com/images/M/MV5BNmQ0ODBhMjUtNDRhOC00MGQzLTk5MTAtZDliODg5NmU5MjZhXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_SX300.jpg" }
-            }
+            },
+            new Dictionary<string, string>
+            {
+                { "Title", "Me before you" },
+                { "Rating", "7.4" },
+                { "Poster", @"https://m.media-amazon.com/images/M/MV5BMTQ2NjE4NDE2NV5BMl5BanBnXkFtZTgwOTcwNDE5NzE@._V1_SX300.jpg" }
+            },
+            new Dictionary<string, string>
+            {
+                { "Title", "The Notebook" },
+                { "Rating", "7.6" },
+                { "Poster", @"https://m.media-amazon.com/images/M/MV5BNzc3Mzg1OGYtZjc3My00Y2NhLTgyOWUtYjRhMmI4OTkwNDg4XkEyXkFqcGdeQXVyMTU3NDU4MDg2._V1_SX300.jpg" }
+            },
+            new Dictionary<string, string>
+            {
+                { "Title", "Bullet Train" },
+                { "Rating", "7.3" },
+                { "Poster", @"https://m.media-amazon.com/images/M/MV5BMDU2ZmM2OTYtNzIxYy00NjM5LTliNGQtN2JmOWQzYTBmZWUzXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg" }
+            },
+
         };
 
         public static List<byte[]> chosenTvShowPosters = new List<byte[]>();
@@ -103,6 +124,60 @@ namespace WatchBox
 
         public static List<Dictionary<string, string>> tvShowRecommendations = new List<Dictionary<string, string>>
         {
+            new Dictionary<string, string>
+            {
+                { "Title", "Sherlock" },
+                { "Rating", "9.1" },
+                { "Poster", @"https://m.media-amazon.com/images/M/MV5BNTQzNGZjNDEtOTMwYi00MzFjLWE2ZTYtYzYxYzMwMjZkZDc5XkEyXkFqcGc@._V1_SX300.jpg" }
+            },
+            new Dictionary<string, string>
+            {
+                { "Title", "The Office" },
+                { "Rating", "9.0" },
+                { "Poster", @"https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_SX300.jpg" }
+            },
+            new Dictionary<string, string>
+            {
+                { "Title", "The Crown" },
+                { "Rating", "8.6" },
+                { "Poster", @"https://m.media-amazon.com/images/M/MV5BODYxYjZkODQtYTMyZS00NTMwLTkzNmItZDZjZDJjMmIzMjk0XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg" }
+            },
+            new Dictionary<string, string>
+            {
+                { "Title", "Avatar: The Last Airbender" },
+                { "Rating", "9.3" },
+                { "Poster", @"https://m.media-amazon.com/images/M/MV5BODc5YTBhMTItMjhkNi00ZTIxLWI0YjAtNTZmOTY0YjRlZGQ0XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_SX300.jpg" }
+            },
+            new Dictionary<string, string>
+            {
+                { "Title", "Star Wars: The Clone Wars" },
+                { "Rating", "8.4" },
+                { "Poster", @"https://m.media-amazon.com/images/M/MV5BZWFlNzRmOTItZjY1Ni00ZjZkLTk5MDgtOGFhOTYzNWFhYzhmXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_SX300.jpg" }
+            },
+            new Dictionary<string, string>
+            {
+                { "Title", "Spy x Family" },
+                { "Rating", "8.3" },
+                { "Poster", @"https://m.media-amazon.com/images/M/MV5BZDY5NTI3ZjUtNGY5ZC00MmE1LWI0ZTUtNDI3YTQ0NGFkMWJlXkEyXkFqcGdeQXVyNTgyNTA4MjM@._V1_SX300.jpg" }
+            },
+            new Dictionary<string, string>
+            {
+                { "Title", "Bridgerton" },
+                { "Rating", "7.4" },
+                { "Poster", @"https://m.media-amazon.com/images/M/MV5BY2ZiODA2MGYtMmMxMi00YjlmLWFmYjktMWYyOTMwNWFkNWNkXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_SX300.jpg" }
+            },
+            new Dictionary<string, string>
+            {
+                { "Title", "Virgin River" },
+                { "Rating", "7.4" },
+                { "Poster", @"https://m.media-amazon.com/images/M/MV5BNjcyMjE5NDAtZjRlMy00MjNhLWEwMGEtNWJlMmIwYWQ1MWZlXkEyXkFqcGdeQXVyMTUwMjg2Nzg0._V1_SX300.jpg" }
+            },
+            new Dictionary<string, string>
+            {
+                { "Title", "The Last of Us" },
+                { "Rating", "8.7" },
+                { "Poster", @"https://m.media-amazon.com/images/M/MV5BZGUzYTI3M2EtZmM0Yy00NGUyLWI4ODEtN2Q3ZGJlYzhhZjU3XkEyXkFqcGdeQXVyNTM0OTY1OQ@@._V1_SX300.jpg" }
+            },
             new Dictionary<string, string>
             {
                 { "Title", "Peaky Blinders" },
@@ -131,7 +206,7 @@ namespace WatchBox
             {
                 { "Title", "The Umbrella Academy" },
                 { "Rating", "8.0" },
-                { "Poster", @"https://m.media-amazon.com/images/M/MV5BMWUxM2Q0NjgtMGJlOC00NDk4LWJhZWMtZjMyZGIyOGNmZmM4XkEyXkFqcGc@._V1_SX300.jpg" }
+                { "Poster", @"https://m.media-amazon.com/images/I/61AG5UDNtAL._AC_UF894,1000_QL80_.jpg" }
             },
             new Dictionary<string, string>
             {
