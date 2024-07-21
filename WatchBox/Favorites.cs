@@ -34,6 +34,7 @@ namespace WatchBox
             foreach (var movie in Data.favorites)
             {
                 MovieControl favoriteControl = new MovieControl();
+
                 favoriteControl.Name = movie["Title"];
 
                 byte[] imageBytes = Convert.FromBase64String(movie["Poster"]);

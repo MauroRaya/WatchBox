@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -38,9 +39,13 @@ namespace WatchBox
             set { lbRating.Text = value; }
         }
 
-        private void pbPoster_Click(object sender, EventArgs e)
+        private async void pbPoster_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(lbName.Text);
+            await Search.fetchMovies(lbName.Text);
+
+            SearchedMovie searchedMoviePage = new SearchedMovie();
+            searchedMoviePage.Show();
+            this.ParentForm.Hide();
         }
 
         private void pbFavorite_Click(object sender, EventArgs e)

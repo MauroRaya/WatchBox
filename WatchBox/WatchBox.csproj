@@ -56,6 +56,12 @@
     <Compile Include="Favorites.Designer.cs">
       <DependentUpon>Favorites.cs</DependentUpon>
     </Compile>
+    <Compile Include="SearchedMovie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchedMovie.Designer.cs">
+      <DependentUpon>SearchedMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="TvShows.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     <Compile Include="Search.cs" />
     <EmbeddedResource Include="Favorites.resx">
       <DependentUpon>Favorites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchedMovie.resx">
+      <DependentUpon>SearchedMovie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TvShows.resx">
       <DependentUpon>TvShows.cs</DependentUpon>

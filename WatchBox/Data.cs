@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,10 @@ namespace WatchBox
     public static class Data
     {
         public static List<Dictionary<string, string>> favorites = new List<Dictionary<string, string>>(); //turn into a db table later
+        
 
 
+        public static JObject selectedMovieData;
 
         public static List<byte[]> chosenMoviePosters = new List<byte[]>();
 
