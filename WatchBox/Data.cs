@@ -96,7 +96,7 @@ namespace WatchBox
             },
             new Dictionary<string, string>
             {
-                { "Title", "Harry Potter and the Philosopher's Stone" },
+                { "Title", "Harry Potter and the Sorcerer's Stone" },
                 { "Rating", "7.6" },
                 { "Poster", @"https://m.media-amazon.com/images/M/MV5BNmQ0ODBhMjUtNDRhOC00MGQzLTk5MTAtZDliODg5NmU5MjZhXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_SX300.jpg" }
             },

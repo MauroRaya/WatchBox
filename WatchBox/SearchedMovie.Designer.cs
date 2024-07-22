@@ -248,7 +248,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(850, 74);
+            this.pictureBox3.Location = new System.Drawing.Point(829, 74);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(38, 38);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -261,7 +261,7 @@
             this.lbRating.BackColor = System.Drawing.Color.Transparent;
             this.lbRating.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRating.ForeColor = System.Drawing.Color.White;
-            this.lbRating.Location = new System.Drawing.Point(884, 82);
+            this.lbRating.Location = new System.Drawing.Point(863, 82);
             this.lbRating.Name = "lbRating";
             this.lbRating.Size = new System.Drawing.Size(74, 26);
             this.lbRating.TabIndex = 18;
@@ -273,7 +273,7 @@
             this.lbPlot.BackColor = System.Drawing.Color.Transparent;
             this.lbPlot.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPlot.ForeColor = System.Drawing.Color.White;
-            this.lbPlot.Location = new System.Drawing.Point(446, 170);
+            this.lbPlot.Location = new System.Drawing.Point(446, 155);
             this.lbPlot.Name = "lbPlot";
             this.lbPlot.Size = new System.Drawing.Size(515, 142);
             this.lbPlot.TabIndex = 19;
@@ -283,7 +283,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Location = new System.Drawing.Point(451, 331);
+            this.panel2.Location = new System.Drawing.Point(451, 328);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(73, 30);
             this.panel2.TabIndex = 20;
@@ -316,7 +316,7 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel3.Controls.Add(this.label6);
-            this.panel3.Location = new System.Drawing.Point(644, 331);
+            this.panel3.Location = new System.Drawing.Point(644, 328);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(116, 30);
             this.panel3.TabIndex = 21;
@@ -337,7 +337,7 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel4.Controls.Add(this.label7);
-            this.panel4.Location = new System.Drawing.Point(846, 331);
+            this.panel4.Location = new System.Drawing.Point(846, 328);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(84, 30);
             this.panel4.TabIndex = 22;
@@ -346,7 +346,7 @@
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel5.Controls.Add(this.label8);
-            this.panel5.Location = new System.Drawing.Point(845, 435);
+            this.panel5.Location = new System.Drawing.Point(845, 432);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(84, 30);
             this.panel5.TabIndex = 25;
@@ -367,7 +367,7 @@
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel6.Controls.Add(this.label9);
-            this.panel6.Location = new System.Drawing.Point(644, 435);
+            this.panel6.Location = new System.Drawing.Point(644, 432);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(67, 30);
             this.panel6.TabIndex = 24;
@@ -388,7 +388,7 @@
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel7.Controls.Add(this.label10);
-            this.panel7.Location = new System.Drawing.Point(449, 435);
+            this.panel7.Location = new System.Drawing.Point(449, 432);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(73, 30);
             this.panel7.TabIndex = 23;
@@ -411,7 +411,7 @@
             this.lbActors.BackColor = System.Drawing.Color.Transparent;
             this.lbActors.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbActors.ForeColor = System.Drawing.Color.White;
-            this.lbActors.Location = new System.Drawing.Point(445, 468);
+            this.lbActors.Location = new System.Drawing.Point(445, 465);
             this.lbActors.Name = "lbActors";
             this.lbActors.Size = new System.Drawing.Size(157, 94);
             this.lbActors.TabIndex = 26;
@@ -423,7 +423,7 @@
             this.lbGenres.BackColor = System.Drawing.Color.Transparent;
             this.lbGenres.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbGenres.ForeColor = System.Drawing.Color.White;
-            this.lbGenres.Location = new System.Drawing.Point(445, 364);
+            this.lbGenres.Location = new System.Drawing.Point(445, 361);
             this.lbGenres.Name = "lbGenres";
             this.lbGenres.Size = new System.Drawing.Size(157, 74);
             this.lbGenres.TabIndex = 27;
@@ -435,7 +435,7 @@
             this.lbReleaseYear.BackColor = System.Drawing.Color.Transparent;
             this.lbReleaseYear.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbReleaseYear.ForeColor = System.Drawing.Color.White;
-            this.lbReleaseYear.Location = new System.Drawing.Point(640, 365);
+            this.lbReleaseYear.Location = new System.Drawing.Point(640, 362);
             this.lbReleaseYear.Name = "lbReleaseYear";
             this.lbReleaseYear.Size = new System.Drawing.Size(120, 39);
             this.lbReleaseYear.TabIndex = 28;
@@ -447,7 +447,7 @@
             this.lbWriter.BackColor = System.Drawing.Color.Transparent;
             this.lbWriter.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWriter.ForeColor = System.Drawing.Color.White;
-            this.lbWriter.Location = new System.Drawing.Point(640, 469);
+            this.lbWriter.Location = new System.Drawing.Point(640, 466);
             this.lbWriter.Name = "lbWriter";
             this.lbWriter.Size = new System.Drawing.Size(157, 74);
             this.lbWriter.TabIndex = 29;
@@ -459,7 +459,7 @@
             this.lbRuntime.BackColor = System.Drawing.Color.Transparent;
             this.lbRuntime.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRuntime.ForeColor = System.Drawing.Color.White;
-            this.lbRuntime.Location = new System.Drawing.Point(842, 365);
+            this.lbRuntime.Location = new System.Drawing.Point(842, 362);
             this.lbRuntime.Name = "lbRuntime";
             this.lbRuntime.Size = new System.Drawing.Size(157, 74);
             this.lbRuntime.TabIndex = 30;
@@ -471,7 +471,7 @@
             this.lbDirector.BackColor = System.Drawing.Color.Transparent;
             this.lbDirector.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDirector.ForeColor = System.Drawing.Color.White;
-            this.lbDirector.Location = new System.Drawing.Point(842, 469);
+            this.lbDirector.Location = new System.Drawing.Point(842, 466);
             this.lbDirector.Name = "lbDirector";
             this.lbDirector.Size = new System.Drawing.Size(157, 74);
             this.lbDirector.TabIndex = 31;

@@ -36,8 +36,11 @@ namespace WatchBox
                 pbPoster.Image    = Image.FromStream(new System.IO.MemoryStream(imageBytes));
             }
 
+            Bitmap starImage = Favorite.changeStar(Data.selectedMovieData["Title"].ToString(), "load");
+            pbFavorite.Image = starImage;
+
             lbTitle.Text  = Data.selectedMovieData["Title"].ToString();
-            lbRating.Text = Data.selectedMovieData["imdbRating"].ToString();
+            lbRating.Text = Data.selectedMovieData["imdbRating"].ToString() + "/10";
             lbPlot.Text   = Data.selectedMovieData["Plot"].ToString();
             lbGenres.Text = Data.selectedMovieData["Genre"].ToString();
             lbReleaseYear.Text = Data.selectedMovieData["Year"].ToString();
@@ -49,7 +52,19 @@ namespace WatchBox
 
         private void pbFavorite_Click(object sender, EventArgs e)
         {
-            // todo
+            Bitmap starImage = Favorite.changeStar(Data.selectedMovieData["Title"].ToString(), "change");
+            pbFavorite.Image = starImage;
+
+            bool isFavorite = Data.favorites.Any(dict => dict["Title"] == Data.selectedMovieData["Title"].ToString());
+
+            if (isFavorite)
+            {
+                Favorite.removeFromFavorites(Data.selectedMovieData["Title"].ToString());
+            }
+            else
+            {
+                Favorite.addToFavorites(pbPoster, Data.selectedMovieData["Title"].ToString());
+            }
         }
 
         private void btnShows_Click(object sender, EventArgs e)

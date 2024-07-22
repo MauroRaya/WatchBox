@@ -30,9 +30,9 @@ namespace WatchBox
         {
             for (int i = 0; i < 5; i++) 
             {
+                MovieControl showControl = new MovieControl();
                 var show = Data.chosenTvShows[i];
 
-                MovieControl showControl = new MovieControl();
                 showControl.Title  = show["Title"].ToString();
                 showControl.Rating = show["Rating"].ToString() + "/10";
                 showControl.Poster = Image.FromStream(new System.IO.MemoryStream(Data.chosenTvShowPosters[i]));

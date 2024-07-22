@@ -14,7 +14,7 @@ namespace WatchBox
     {
         private static readonly HttpClient client = new HttpClient();
 
-        private static string apiKey = "O.o <- this is Robert, say hi to Robert!";
+        private static string apiKey = "x.x <- robert died, look at what you did >:I";
         private static string apiUrl = "http://www.omdbapi.com";
 
         public async static Task fetchMovies(string title)
@@ -23,10 +23,8 @@ namespace WatchBox
 
             try
             {
-                string responseBody = await client.GetStringAsync(apiRequest);
-                JObject movieData   = JObject.Parse(responseBody);
-
-                Data.selectedMovieData = movieData;
+                string responseBody    = await client.GetStringAsync(apiRequest);
+                Data.selectedMovieData = JObject.Parse(responseBody);
             }
             catch (HttpRequestException e)
             {

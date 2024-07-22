@@ -45,7 +45,7 @@
             this.pbPoster.Location = new System.Drawing.Point(0, 0);
             this.pbPoster.Name = "pbPoster";
             this.pbPoster.Size = new System.Drawing.Size(194, 296);
-            this.pbPoster.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbPoster.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPoster.TabIndex = 0;
             this.pbPoster.TabStop = false;
             this.pbPoster.Click += new System.EventHandler(this.pbPoster_Click);
@@ -80,7 +80,7 @@
             this.lbRating.Name = "lbRating";
             this.lbRating.Size = new System.Drawing.Size(63, 22);
             this.lbRating.TabIndex = 3;
-            this.lbRating.Text = "9,8/10";
+            this.lbRating.Text = "9.8/10";
             // 
             // pbFavorite
             // 
