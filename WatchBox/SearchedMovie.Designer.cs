@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchedMovie));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnShows = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.btnShare = new System.Windows.Forms.Button();
-            this.tbMovieName = new System.Windows.Forms.TextBox();
+            this.tbSearchTitle = new System.Windows.Forms.TextBox();
             this.btnFavorites = new System.Windows.Forms.Button();
             this.btnMovies = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
@@ -80,9 +80,9 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel1.Controls.Add(this.btnShows);
-            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.btnShare);
-            this.panel1.Controls.Add(this.tbMovieName);
+            this.panel1.Controls.Add(this.tbSearchTitle);
             this.panel1.Controls.Add(this.btnFavorites);
             this.panel1.Controls.Add(this.btnMovies);
             this.panel1.Controls.Add(this.btnExit);
@@ -110,15 +110,16 @@
             this.btnShows.UseVisualStyleBackColor = false;
             this.btnShows.Click += new System.EventHandler(this.btnShows_Click);
             // 
-            // button3
+            // btnSearch
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(486, 10);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(81, 29);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "search";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Location = new System.Drawing.Point(486, 10);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(81, 29);
+            this.btnSearch.TabIndex = 3;
+            this.btnSearch.Text = "search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnShare
             // 
@@ -135,13 +136,13 @@
             this.btnShare.Text = "Share";
             this.btnShare.UseVisualStyleBackColor = false;
             // 
-            // tbMovieName
+            // tbSearchTitle
             // 
-            this.tbMovieName.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMovieName.Location = new System.Drawing.Point(188, 10);
-            this.tbMovieName.Name = "tbMovieName";
-            this.tbMovieName.Size = new System.Drawing.Size(286, 29);
-            this.tbMovieName.TabIndex = 2;
+            this.tbSearchTitle.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbSearchTitle.Location = new System.Drawing.Point(188, 10);
+            this.tbSearchTitle.Name = "tbSearchTitle";
+            this.tbSearchTitle.Size = new System.Drawing.Size(286, 29);
+            this.tbSearchTitle.TabIndex = 2;
             // 
             // btnFavorites
             // 
@@ -228,9 +229,10 @@
             // 
             // pbPoster
             // 
-            this.pbPoster.Location = new System.Drawing.Point(98, 82);
+            this.pbPoster.Location = new System.Drawing.Point(115, 82);
             this.pbPoster.Name = "pbPoster";
-            this.pbPoster.Size = new System.Drawing.Size(317, 461);
+            this.pbPoster.Size = new System.Drawing.Size(300, 444);
+            this.pbPoster.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPoster.TabIndex = 16;
             this.pbPoster.TabStop = false;
             // 
@@ -248,7 +250,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(829, 74);
+            this.pictureBox3.Location = new System.Drawing.Point(831, 74);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(38, 38);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -261,7 +263,7 @@
             this.lbRating.BackColor = System.Drawing.Color.Transparent;
             this.lbRating.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRating.ForeColor = System.Drawing.Color.White;
-            this.lbRating.Location = new System.Drawing.Point(863, 82);
+            this.lbRating.Location = new System.Drawing.Point(865, 82);
             this.lbRating.Name = "lbRating";
             this.lbRating.Size = new System.Drawing.Size(74, 26);
             this.lbRating.TabIndex = 18;
@@ -273,9 +275,9 @@
             this.lbPlot.BackColor = System.Drawing.Color.Transparent;
             this.lbPlot.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPlot.ForeColor = System.Drawing.Color.White;
-            this.lbPlot.Location = new System.Drawing.Point(446, 155);
+            this.lbPlot.Location = new System.Drawing.Point(448, 156);
             this.lbPlot.Name = "lbPlot";
-            this.lbPlot.Size = new System.Drawing.Size(515, 142);
+            this.lbPlot.Size = new System.Drawing.Size(527, 94);
             this.lbPlot.TabIndex = 19;
             this.lbPlot.Text = resources.GetString("lbPlot.Text");
             // 
@@ -283,7 +285,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Location = new System.Drawing.Point(451, 328);
+            this.panel2.Location = new System.Drawing.Point(451, 281);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(73, 30);
             this.panel2.TabIndex = 20;
@@ -316,7 +318,7 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel3.Controls.Add(this.label6);
-            this.panel3.Location = new System.Drawing.Point(644, 328);
+            this.panel3.Location = new System.Drawing.Point(646, 281);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(116, 30);
             this.panel3.TabIndex = 21;
@@ -337,7 +339,7 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel4.Controls.Add(this.label7);
-            this.panel4.Location = new System.Drawing.Point(846, 328);
+            this.panel4.Location = new System.Drawing.Point(850, 281);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(84, 30);
             this.panel4.TabIndex = 22;
@@ -346,7 +348,7 @@
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel5.Controls.Add(this.label8);
-            this.panel5.Location = new System.Drawing.Point(845, 432);
+            this.panel5.Location = new System.Drawing.Point(849, 385);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(84, 30);
             this.panel5.TabIndex = 25;
@@ -367,7 +369,7 @@
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel6.Controls.Add(this.label9);
-            this.panel6.Location = new System.Drawing.Point(644, 432);
+            this.panel6.Location = new System.Drawing.Point(646, 385);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(67, 30);
             this.panel6.TabIndex = 24;
@@ -388,7 +390,7 @@
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel7.Controls.Add(this.label10);
-            this.panel7.Location = new System.Drawing.Point(449, 432);
+            this.panel7.Location = new System.Drawing.Point(449, 385);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(73, 30);
             this.panel7.TabIndex = 23;
@@ -411,7 +413,7 @@
             this.lbActors.BackColor = System.Drawing.Color.Transparent;
             this.lbActors.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbActors.ForeColor = System.Drawing.Color.White;
-            this.lbActors.Location = new System.Drawing.Point(445, 465);
+            this.lbActors.Location = new System.Drawing.Point(445, 418);
             this.lbActors.Name = "lbActors";
             this.lbActors.Size = new System.Drawing.Size(157, 94);
             this.lbActors.TabIndex = 26;
@@ -423,7 +425,7 @@
             this.lbGenres.BackColor = System.Drawing.Color.Transparent;
             this.lbGenres.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbGenres.ForeColor = System.Drawing.Color.White;
-            this.lbGenres.Location = new System.Drawing.Point(445, 361);
+            this.lbGenres.Location = new System.Drawing.Point(445, 314);
             this.lbGenres.Name = "lbGenres";
             this.lbGenres.Size = new System.Drawing.Size(157, 74);
             this.lbGenres.TabIndex = 27;
@@ -435,7 +437,7 @@
             this.lbReleaseYear.BackColor = System.Drawing.Color.Transparent;
             this.lbReleaseYear.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbReleaseYear.ForeColor = System.Drawing.Color.White;
-            this.lbReleaseYear.Location = new System.Drawing.Point(640, 362);
+            this.lbReleaseYear.Location = new System.Drawing.Point(642, 315);
             this.lbReleaseYear.Name = "lbReleaseYear";
             this.lbReleaseYear.Size = new System.Drawing.Size(120, 39);
             this.lbReleaseYear.TabIndex = 28;
@@ -447,7 +449,7 @@
             this.lbWriter.BackColor = System.Drawing.Color.Transparent;
             this.lbWriter.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWriter.ForeColor = System.Drawing.Color.White;
-            this.lbWriter.Location = new System.Drawing.Point(640, 466);
+            this.lbWriter.Location = new System.Drawing.Point(642, 419);
             this.lbWriter.Name = "lbWriter";
             this.lbWriter.Size = new System.Drawing.Size(157, 74);
             this.lbWriter.TabIndex = 29;
@@ -459,7 +461,7 @@
             this.lbRuntime.BackColor = System.Drawing.Color.Transparent;
             this.lbRuntime.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRuntime.ForeColor = System.Drawing.Color.White;
-            this.lbRuntime.Location = new System.Drawing.Point(842, 362);
+            this.lbRuntime.Location = new System.Drawing.Point(846, 315);
             this.lbRuntime.Name = "lbRuntime";
             this.lbRuntime.Size = new System.Drawing.Size(157, 74);
             this.lbRuntime.TabIndex = 30;
@@ -471,7 +473,7 @@
             this.lbDirector.BackColor = System.Drawing.Color.Transparent;
             this.lbDirector.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDirector.ForeColor = System.Drawing.Color.White;
-            this.lbDirector.Location = new System.Drawing.Point(842, 466);
+            this.lbDirector.Location = new System.Drawing.Point(846, 419);
             this.lbDirector.Name = "lbDirector";
             this.lbDirector.Size = new System.Drawing.Size(157, 74);
             this.lbDirector.TabIndex = 31;
@@ -532,10 +534,10 @@
         private System.Windows.Forms.Button btnShare;
         private System.Windows.Forms.Button btnFavorites;
         private System.Windows.Forms.Button btnMovies;
-        private System.Windows.Forms.TextBox tbMovieName;
+        private System.Windows.Forms.TextBox tbSearchTitle;
         private System.Windows.Forms.Button btnShows;
         private System.Windows.Forms.Label lbTitle;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.PictureBox pbPoster;
         private System.Windows.Forms.PictureBox pbFavorite;
         private System.Windows.Forms.PictureBox pictureBox3;

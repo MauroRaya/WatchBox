@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Favorites));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnShows = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.btnShare = new System.Windows.Forms.Button();
-            this.tbMovieName = new System.Windows.Forms.TextBox();
+            this.tbSearchTitle = new System.Windows.Forms.TextBox();
             this.btnFavorites = new System.Windows.Forms.Button();
             this.btnMovies = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,9 +49,9 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel1.Controls.Add(this.btnShows);
-            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.btnShare);
-            this.panel1.Controls.Add(this.tbMovieName);
+            this.panel1.Controls.Add(this.tbSearchTitle);
             this.panel1.Controls.Add(this.btnFavorites);
             this.panel1.Controls.Add(this.btnMovies);
             this.panel1.Controls.Add(this.label2);
@@ -79,15 +79,16 @@
             this.btnShows.UseVisualStyleBackColor = false;
             this.btnShows.Click += new System.EventHandler(this.btnShows_Click);
             // 
-            // button3
+            // btnSearch
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(486, 10);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(81, 29);
-            this.button3.TabIndex = 16;
-            this.button3.Text = "search";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Location = new System.Drawing.Point(486, 10);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(81, 29);
+            this.btnSearch.TabIndex = 16;
+            this.btnSearch.Text = "search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnShare
             // 
@@ -104,13 +105,13 @@
             this.btnShare.Text = "Share";
             this.btnShare.UseVisualStyleBackColor = false;
             // 
-            // tbMovieName
+            // tbSearchTitle
             // 
-            this.tbMovieName.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMovieName.Location = new System.Drawing.Point(188, 10);
-            this.tbMovieName.Name = "tbMovieName";
-            this.tbMovieName.Size = new System.Drawing.Size(286, 29);
-            this.tbMovieName.TabIndex = 15;
+            this.tbSearchTitle.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbSearchTitle.Location = new System.Drawing.Point(188, 10);
+            this.tbSearchTitle.Name = "tbSearchTitle";
+            this.tbSearchTitle.Size = new System.Drawing.Size(286, 29);
+            this.tbSearchTitle.TabIndex = 15;
             // 
             // btnFavorites
             // 
@@ -229,9 +230,9 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnShows;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnShare;
-        private System.Windows.Forms.TextBox tbMovieName;
+        private System.Windows.Forms.TextBox tbSearchTitle;
         private System.Windows.Forms.Button btnFavorites;
         private System.Windows.Forms.Button btnMovies;
         private System.Windows.Forms.Label label2;

@@ -14,10 +14,10 @@ namespace WatchBox
     {
         private static readonly HttpClient client = new HttpClient();
 
-        private static string apiKey = "x.x <- robert died, look at what you did >:I";
+        private static string apiKey = "idk ran out of ideas";
         private static string apiUrl = "http://www.omdbapi.com";
 
-        public async static Task fetchMovies(string title)
+        public async static Task fetchMovie(string title)
         {
             string apiRequest = $"{apiUrl}/?apikey={apiKey}&t={title}";
 

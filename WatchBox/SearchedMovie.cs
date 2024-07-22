@@ -20,6 +20,7 @@ namespace WatchBox
         {
             InitializeComponent();
             displayMovie();
+            tbSearchTitle.KeyPress += new KeyPressEventHandler(tbSearchTitle_KeyPress);
         }
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -88,5 +89,32 @@ namespace WatchBox
             this.Hide();
         }
 
+        private async void btnSearch_Click(object sender, EventArgs e)
+        {
+            await Search.fetchMovie(tbSearchTitle.Text);
+
+            if (Data.selectedMovieData == null)
+            {
+                return;
+            }
+
+            if (Data.selectedMovieData["Response"].ToString() == "False")
+            {
+                MessageBox.Show("Movie not found. Make sure to type the title correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            SearchedMovie moviePage = new SearchedMovie();
+            moviePage.Show();
+            this.Hide();
+        }
+
+        private void tbSearchTitle_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnSearch_Click(sender, e);
+            }
+        }
     }
 }
