@@ -14,11 +14,10 @@ namespace WatchBox
 {
     public partial class MovieControl : UserControl
     {
-        private string favoriteState = "notFavorite";
-
         public MovieControl()
         {
             InitializeComponent();
+            IsFavorite = false;
         }
 
         public Image Poster
@@ -27,10 +26,10 @@ namespace WatchBox
             set { pbPoster.Image = value; }
         }
 
-        public String Name
+        public String Title
         {
-            get { return lbName.Text;  }
-            set { lbName.Text = value; }
+            get { return lbTitle.Text;  }
+            set { lbTitle.Text = value; }
         }
 
         public String Rating
@@ -39,9 +38,17 @@ namespace WatchBox
             set { lbRating.Text = value; }
         }
 
+        public Image FavoriteButton
+        {
+            get { return pbFavorite.Image; }
+            set { pbFavorite.Image = value; }
+        }
+
+        public bool IsFavorite { get; set; }
+
         private async void pbPoster_Click(object sender, EventArgs e)
         {
-            await Search.fetchMovies(lbName.Text);
+            await Search.fetchMovies(lbTitle.Text);
 
             SearchedMovie searchedMoviePage = new SearchedMovie();
             searchedMoviePage.Show();
@@ -50,88 +57,19 @@ namespace WatchBox
 
         private void pbFavorite_Click(object sender, EventArgs e)
         {
-            changeStar();
-
-            if (favoriteState == "favorite")
+            if (IsFavorite)
             {
-                addToFavorites();
+                Favorite.removeFromFavorites(this);
+
+                if (this.ParentForm is Favorites)
+                {
+                    Favorites.removeFavoriteUI(this);
+                }
             }
             else
             {
-                removeFromFavorites();
-                ((Favorites)this.FindForm()).removeFavorite(lbName.Text);
-            }
-
-            //string message = favoriteState == "favorite" ? "Saved to your favorites!" : "Removed from your favorites";
-            //MessageBox.Show(message);
-        }
-
-        public void changeStar()
-        {
-            string favoritePath    = @"C:\Users\Mauro\Desktop\WatchBox\imgs\favorite_icon.png";
-            string notFavoritePath = @"C:\Users\Mauro\Desktop\WatchBox\imgs\not_favorite_icon.png";
-
-            favoriteState = favoriteState    == "notFavorite" ? "favorite" : "notFavorite";
-            string imagePath = favoriteState == "notFavorite" ? notFavoritePath : favoritePath;
-
-            try
-            {
-                if (System.IO.File.Exists(imagePath))
-                {
-                    using (Image image = Image.FromFile(imagePath))
-                    {
-                        pbFavorite.Image    = new Bitmap(image);
-                        pbFavorite.SizeMode = PictureBoxSizeMode.Zoom;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Image file not found: " + imagePath);
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show("ArgumentException: " + ex.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading image: " + ex.Message);
+                Favorite.addToFavorites(this);
             }
         }
-
-        private void addToFavorites()
-        {
-            string movieTitle = lbName.Text;
-            Image posterImage = pbPoster.Image;
-
-            byte[] imageBytes;
-            using (MemoryStream ms = new MemoryStream())
-            {
-                posterImage.Save(ms, posterImage.RawFormat);
-                imageBytes = ms.ToArray();
-            }
-
-            string base64Image = Convert.ToBase64String(imageBytes);
-
-            Dictionary<string, string> movieInfo = new Dictionary<string, string>
-            {
-                { "Title", movieTitle },
-                { "Poster", base64Image }
-            };
-
-            Data.favorites.Add(movieInfo);
-        }
-
-        private void removeFromFavorites()
-        {
-            string movieTitle = lbName.Text;
-
-            var movieToRemove = Data.favorites.FirstOrDefault(movie => movie["Title"] == movieTitle);
-            if (movieToRemove != null)
-            {
-                Data.favorites.Remove(movieToRemove);
-            }
-        }
-
     }
 }

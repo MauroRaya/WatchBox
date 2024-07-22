@@ -27,42 +27,33 @@ namespace WatchBox
             Application.Exit();
         }
 
-        private void displayFavorites()
+        private void displayFavorites() //fix ratings and data
         {
             flowLayoutPanel.Controls.Clear();
 
             foreach (var movie in Data.favorites)
             {
-                MovieControl favoriteControl = new MovieControl();
+                MovieControl movieControl = new MovieControl();
 
-                favoriteControl.Name = movie["Title"];
+                movieControl.Title = movie["Title"];
+                movieControl.IsFavorite = true;
 
                 byte[] imageBytes = Convert.FromBase64String(movie["Poster"]);
                 using (MemoryStream ms = new MemoryStream(imageBytes))
                 {
-                    favoriteControl.Poster = Image.FromStream(ms);
+                    movieControl.Poster = Image.FromStream(ms);
                 }
 
-                if (Data.favorites.Any(dict => dict["Title"] == movie["Title"].ToString()))
-                {
-                    favoriteControl.changeStar();
-                }
-
-                flowLayoutPanel.Controls.Add(favoriteControl);
+                Favorite.changeStar(movieControl);
+                flowLayoutPanel.Controls.Add(movieControl);
             }
         }
 
-        public void removeFavorite(string title)
+        public static void removeFavoriteUI(MovieControl movieControl)
         {
-            foreach (Control control in flowLayoutPanel.Controls)
-            {
-                if (control is MovieControl movieControl && movieControl.Name == title)
-                {
-                    flowLayoutPanel.Controls.Remove(movieControl);
-                    movieControl.Dispose();
-                    break;
-                }
-            }
+            FlowLayoutPanel flowLayoutPanel = (FlowLayoutPanel)movieControl.Parent;
+            flowLayoutPanel.Controls.Remove(movieControl);
+            movieControl.Dispose();
         }
 
 

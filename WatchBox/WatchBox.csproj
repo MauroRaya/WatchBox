@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data.cs" />
+    <Compile Include="Favorite.cs" />
     <Compile Include="Favorites.cs">
       <SubType>Form</SubType>
     </Compile>

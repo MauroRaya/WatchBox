@@ -243,6 +243,7 @@
             this.pbFavorite.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbFavorite.TabIndex = 17;
             this.pbFavorite.TabStop = false;
+            this.pbFavorite.Click += new System.EventHandler(this.pbFavorite_Click);
             // 
             // pictureBox3
             // 

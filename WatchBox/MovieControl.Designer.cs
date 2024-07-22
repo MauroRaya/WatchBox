@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MovieControl));
             this.pbPoster = new System.Windows.Forms.PictureBox();
-            this.lbName = new System.Windows.Forms.Label();
+            this.lbTitle = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lbRating = new System.Windows.Forms.Label();
             this.pbFavorite = new System.Windows.Forms.PictureBox();
@@ -45,21 +45,21 @@
             this.pbPoster.Location = new System.Drawing.Point(0, 0);
             this.pbPoster.Name = "pbPoster";
             this.pbPoster.Size = new System.Drawing.Size(194, 296);
-            this.pbPoster.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbPoster.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbPoster.TabIndex = 0;
             this.pbPoster.TabStop = false;
             this.pbPoster.Click += new System.EventHandler(this.pbPoster_Click);
             // 
-            // lbName
+            // lbTitle
             // 
-            this.lbName.AutoEllipsis = true;
-            this.lbName.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
-            this.lbName.ForeColor = System.Drawing.Color.White;
-            this.lbName.Location = new System.Drawing.Point(1, 299);
-            this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(193, 51);
-            this.lbName.TabIndex = 1;
-            this.lbName.Text = "Frieren: Beyond Journey\'s End";
+            this.lbTitle.AutoEllipsis = true;
+            this.lbTitle.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
+            this.lbTitle.ForeColor = System.Drawing.Color.White;
+            this.lbTitle.Location = new System.Drawing.Point(1, 299);
+            this.lbTitle.Name = "lbTitle";
+            this.lbTitle.Size = new System.Drawing.Size(193, 51);
+            this.lbTitle.TabIndex = 1;
+            this.lbTitle.Text = "Frieren: Beyond Journey\'s End";
             // 
             // pictureBox2
             // 
@@ -101,7 +101,7 @@
             this.Controls.Add(this.pbFavorite);
             this.Controls.Add(this.lbRating);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.lbName);
+            this.Controls.Add(this.lbTitle);
             this.Controls.Add(this.pbPoster);
             this.Name = "MovieControl";
             this.Size = new System.Drawing.Size(193, 394);
@@ -116,7 +116,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pbPoster;
-        private System.Windows.Forms.Label lbName;
+        private System.Windows.Forms.Label lbTitle;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lbRating;
         private System.Windows.Forms.PictureBox pbFavorite;

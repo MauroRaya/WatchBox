@@ -28,19 +28,19 @@ namespace WatchBox
 
         private void displayRecomendations()
         {
+            flowLayoutPanel.Controls.Clear();
+
             for (int i = 0; i < 5; i++) 
             {
                 var movie = Data.chosenMovies[i];
 
                 MovieControl movieControl = new MovieControl();
-                movieControl.Name   = movie["Title"].ToString();
+                movieControl.Title  = movie["Title"].ToString();
                 movieControl.Rating = movie["Rating"].ToString() + "/10";
                 movieControl.Poster = Image.FromStream(new System.IO.MemoryStream(Data.chosenMoviePosters[i]));
+                movieControl.IsFavorite = Data.favorites.Any(dict => dict["Title"] == movie["Title"].ToString());
 
-                if (Data.favorites.Any(dict => dict["Title"] == movie["Title"].ToString()))
-                {
-                    movieControl.changeStar();
-                }
+                Favorite.changeStar(movieControl);
 
                 flowLayoutPanel.Controls.Add(movieControl);
             }

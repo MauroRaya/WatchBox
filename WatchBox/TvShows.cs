@@ -33,9 +33,12 @@ namespace WatchBox
                 var show = Data.chosenTvShows[i];
 
                 MovieControl showControl = new MovieControl();
-                showControl.Name   = show["Title"].ToString();
+                showControl.Title  = show["Title"].ToString();
                 showControl.Rating = show["Rating"].ToString() + "/10";
                 showControl.Poster = Image.FromStream(new System.IO.MemoryStream(Data.chosenTvShowPosters[i]));
+                showControl.IsFavorite = Data.favorites.Any(dict => dict["Title"] == show["Title"].ToString());
+
+                Favorite.changeStar(showControl);
 
                 flowLayoutPanel.Controls.Add(showControl);
             }

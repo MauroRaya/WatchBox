@@ -47,6 +47,11 @@ namespace WatchBox
             lbDirector.Text = Data.selectedMovieData["Director"].ToString();
         }
 
+        private void pbFavorite_Click(object sender, EventArgs e)
+        {
+            // todo
+        }
+
         private void btnShows_Click(object sender, EventArgs e)
         {
             TvShows tvShowsPage = new TvShows();
@@ -67,5 +72,6 @@ namespace WatchBox
             moviesPage.Show();
             this.Hide();
         }
+
     }
 }
