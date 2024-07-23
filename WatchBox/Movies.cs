@@ -31,15 +31,15 @@ namespace WatchBox
         {
             flowLayoutPanel.Controls.Clear();
 
-            for (int i = 0; i < 5; i++) 
+            for (int i = 0; i < Data.chosenMovies.Count; i++)
             {
                 var movie = Data.chosenMovies[i];
 
                 MovieControl movieControl = new MovieControl();
                 movieControl.Title  = movie["Title"].ToString();
-                movieControl.Rating = movie["Rating"].ToString() + "/10";
+                movieControl.Rating = movie["imdbRating"].ToString() + "/10";
                 movieControl.Poster = Image.FromStream(new System.IO.MemoryStream(Data.chosenMoviePosters[i]));
-                movieControl.IsFavorite = Data.favorites.Any(dict => dict["Title"] == movie["Title"].ToString());
+                movieControl.IsFavorite = Data.favorites.Contains(movie["Title"].ToString());
 
                 Favorite.changeStar(movieControl);
 
@@ -63,7 +63,7 @@ namespace WatchBox
 
         private async void btnSearch_Click(object sender, EventArgs e)
         {
-            await Search.fetchMovie(tbSearchTitle.Text);
+            Data.selectedMovieData = await Search.fetchMovie(tbSearchTitle.Text);
 
             if (Data.selectedMovieData == null)
             {

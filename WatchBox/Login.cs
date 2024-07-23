@@ -1,11 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,8 +13,9 @@ namespace WatchBox
         public Login()
         {
             InitializeComponent();
-            populateRecomendations();
-            fetchPosters();
+
+            fetchMovieData(Data.movieRecommendations, "movie");
+            fetchMovieData(Data.tvShowRecommendations, "show");
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -38,43 +36,52 @@ namespace WatchBox
             }
         }
 
-        private void populateRecomendations()
+        private async void fetchMovieData(List<string> recommendations, string type)
         {
-            Random rnd  = new Random();
-            Data.chosenMovies = Data.movieRecomendations
-                                  .OrderBy(x => rnd.Next())
-                                  .Take(5)
-                                  .ToList();
+            Random rnd = new Random();
+            string[] movies = recommendations
+                             .OrderBy(x => rnd.Next())
+                             .Take(5)
+                             .ToArray();
 
-            Data.chosenTvShows = Data.tvShowRecommendations
-                                  .OrderBy(x => rnd.Next())
-                                  .Take(5)
-                                  .ToList();
+            foreach (string title in movies)
+            {
+                JObject movieData = await Search.fetchMovie(title);
+
+                if (movieData != null)
+                {
+                    byte[] imageBytes = await fetchImageData(movieData["Poster"].ToString());
+
+                    if (type == "movie")
+                    {
+                        Data.chosenMovies.Add(movieData);
+                        Data.chosenMoviePosters.Add(imageBytes);
+                    }
+                    else if (type == "show")
+                    {
+                        Data.chosenTvShows.Add(movieData);
+                        Data.chosenTvShowPosters.Add(imageBytes);
+                    }
+                }
+            }
         }
 
-        private async void fetchPosters()
+        private async Task<byte[]> fetchImageData(string url)
         {
-            foreach (var movie in Data.chosenMovies)
+            try
             {
-                string posterUrl = movie["Poster"].ToString();
-
-                using (var webClient = new HttpClient())
+                using (var httpClient = new HttpClient())
                 {
-                    byte[] imageBytes = await webClient.GetByteArrayAsync(posterUrl);
-                    Data.chosenMoviePosters.Add(imageBytes);
+                    return await httpClient.GetByteArrayAsync(url);
                 }
             }
-
-            foreach (var show in Data.chosenTvShows)
+            catch (HttpRequestException e)
             {
-                string posterUrl = show["Poster"].ToString();
-
-                using (var webClient = new HttpClient())
-                {
-                    byte[] imageBytes = await webClient.GetByteArrayAsync(posterUrl);
-                    Data.chosenTvShowPosters.Add(imageBytes);
-                }
+                MessageBox.Show($"Request error: {e.Message}");
             }
+            return null;
         }
     }
 }
+
+

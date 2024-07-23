@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,8 +34,15 @@ namespace WatchBox
 
             using (var webClient = new HttpClient())
             {
-                byte[] imageBytes = await webClient.GetByteArrayAsync(posterUrl);
-                pbPoster.Image    = Image.FromStream(new System.IO.MemoryStream(imageBytes));
+                try
+                {
+                    byte[] imageBytes = await webClient.GetByteArrayAsync(posterUrl);
+                    pbPoster.Image = Image.FromStream(new System.IO.MemoryStream(imageBytes));
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show($"Request error: {e.Message}");
+                }
             }
 
             Bitmap starImage = Favorite.changeStar(Data.selectedMovieData["Title"].ToString(), "load");
@@ -56,7 +64,7 @@ namespace WatchBox
             Bitmap starImage = Favorite.changeStar(Data.selectedMovieData["Title"].ToString(), "change");
             pbFavorite.Image = starImage;
 
-            bool isFavorite = Data.favorites.Any(dict => dict["Title"] == Data.selectedMovieData["Title"].ToString());
+            bool isFavorite = Data.favorites.Any(title => title == Data.selectedMovieData["Title"].ToString());
 
             if (isFavorite)
             {
@@ -64,7 +72,7 @@ namespace WatchBox
             }
             else
             {
-                Favorite.addToFavorites(pbPoster, Data.selectedMovieData["Title"].ToString());
+                Favorite.addToFavorites(Data.selectedMovieData["Title"].ToString());
             }
         }
 
@@ -91,7 +99,7 @@ namespace WatchBox
 
         private async void btnSearch_Click(object sender, EventArgs e)
         {
-            await Search.fetchMovie(tbSearchTitle.Text);
+            Data.selectedMovieData = await Search.fetchMovie(tbSearchTitle.Text);
 
             if (Data.selectedMovieData == null)
             {

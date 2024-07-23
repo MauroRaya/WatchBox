@@ -31,13 +31,13 @@ namespace WatchBox
         {
             for (int i = 0; i < 5; i++) 
             {
-                MovieControl showControl = new MovieControl();
                 var show = Data.chosenTvShows[i];
 
+                MovieControl showControl = new MovieControl();
                 showControl.Title  = show["Title"].ToString();
-                showControl.Rating = show["Rating"].ToString() + "/10";
+                showControl.Rating = show["imdbRating"].ToString() + "/10";
                 showControl.Poster = Image.FromStream(new System.IO.MemoryStream(Data.chosenTvShowPosters[i]));
-                showControl.IsFavorite = Data.favorites.Any(dict => dict["Title"] == show["Title"].ToString());
+                showControl.IsFavorite = Data.favorites.Contains(show["Title"].ToString());
 
                 Favorite.changeStar(showControl);
 
@@ -61,7 +61,7 @@ namespace WatchBox
 
         private async void btnSearch_Click(object sender, EventArgs e)
         {
-            await Search.fetchMovie(tbSearchTitle.Text);
+            Data.selectedMovieData = await Search.fetchMovie(tbSearchTitle.Text);
 
             if (Data.selectedMovieData == null)
             {

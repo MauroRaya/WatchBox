@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,21 +29,37 @@ namespace WatchBox
             Application.Exit();
         }
 
-        private void displayFavorites() //fix ratings and data
+        private async void displayFavorites()
         {
             flowLayoutPanel.Controls.Clear();
 
-            foreach (var movie in Data.favorites)
+            foreach (var title in Data.favorites)
             {
-                MovieControl movieControl = new MovieControl();
+                JObject favoriteData = await Search.fetchMovie(title);
 
-                movieControl.Title = movie["Title"];
+                MovieControl movieControl = new MovieControl();
+                movieControl.Title  = title;
+                movieControl.Rating = favoriteData["imdbRating"].ToString() + "/10";
                 movieControl.IsFavorite = true;
 
-                byte[] imageBytes = Convert.FromBase64String(movie["Poster"]);
-                using (MemoryStream ms = new MemoryStream(imageBytes))
+                string posterUrl = favoriteData["Poster"].ToString();
+                if (posterUrl != null)
                 {
-                    movieControl.Poster = Image.FromStream(ms);
+                    using (WebClient wc = new WebClient())
+                    {
+                        try
+                        {
+                            byte[] imageBytes = await wc.DownloadDataTaskAsync(new Uri(posterUrl));
+                            using (MemoryStream ms = new MemoryStream(imageBytes))
+                            {
+                                movieControl.Poster = new Bitmap(ms);
+                            }
+                        }
+                        catch (HttpRequestException e)
+                        {
+                            MessageBox.Show($"Request error: {e.Message}");
+                        }
+                    }
                 }
 
                 Favorite.changeStar(movieControl);
@@ -74,7 +91,7 @@ namespace WatchBox
 
         private async void btnSearch_Click(object sender, EventArgs e)
         {
-            await Search.fetchMovie(tbSearchTitle.Text);
+            Data.selectedMovieData = await Search.fetchMovie(tbSearchTitle.Text);
 
             if (Data.selectedMovieData == null)
             {

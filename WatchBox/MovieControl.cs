@@ -48,7 +48,7 @@ namespace WatchBox
 
         private async void pbPoster_Click(object sender, EventArgs e)
         {
-            await Search.fetchMovie(lbTitle.Text);
+            Data.selectedMovieData = await Search.fetchMovie(lbTitle.Text);
 
             if (Data.selectedMovieData == null)
             {

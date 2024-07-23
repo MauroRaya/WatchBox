@@ -15,49 +15,19 @@ namespace WatchBox
     {
         public static void addToFavorites(MovieControl movieControl)
         {
-            byte[] imageBytes;
-            using (MemoryStream ms = new MemoryStream())
-            {
-                movieControl.Poster.Save(ms, movieControl.Poster.RawFormat);
-                imageBytes = ms.ToArray();
-            }
-
-            string base64Image = Convert.ToBase64String(imageBytes);
-
-            Dictionary<string, string> movieInfo = new Dictionary<string, string>
-            {
-                { "Title",  movieControl.Title },
-                { "Poster", base64Image }
-            };
-
-            Data.favorites.Add(movieInfo);
+            Data.favorites.Add(movieControl.Title);
             movieControl.IsFavorite = true;
             changeStar(movieControl);
         }
 
-        public static void addToFavorites(PictureBox poster, string movieTitle)
+        public static void addToFavorites(string movieTitle)
         {
-            byte[] imageBytes;
-            using (MemoryStream ms = new MemoryStream())
-            {
-                poster.Image.Save(ms, poster.Image.RawFormat);
-                imageBytes = ms.ToArray();
-            }
-
-            string base64Image = Convert.ToBase64String(imageBytes);
-
-            Dictionary<string, string> movieInfo = new Dictionary<string, string>
-            {
-                { "Title",  movieTitle },
-                { "Poster", base64Image }
-            };
-
-            Data.favorites.Add(movieInfo);
+            Data.favorites.Add(movieTitle);
         }
 
         public static void removeFromFavorites(MovieControl movieControl)
         {
-            var movieToRemove = Data.favorites.FirstOrDefault(movie => movie["Title"] == movieControl.Title);
+            string movieToRemove = Data.favorites.FirstOrDefault(title => title == movieControl.Title);
 
             if (movieToRemove != null)
             {
@@ -69,7 +39,7 @@ namespace WatchBox
 
         public static void removeFromFavorites(string movieTitle)
         {
-            var movieToRemove = Data.favorites.FirstOrDefault(movie => movie["Title"] == movieTitle);
+            var movieToRemove = Data.favorites.FirstOrDefault(title => title == movieTitle);
 
             if (movieToRemove != null)
             {
@@ -113,7 +83,7 @@ namespace WatchBox
             string favoritePath    = @"C:\Users\Mauro\Desktop\WatchBox\imgs\favorite_icon.png";
             string notFavoritePath = @"C:\Users\Mauro\Desktop\WatchBox\imgs\not_favorite_icon.png";
 
-            bool isFavorite  = Data.favorites.Any(dict => dict["Title"] == movieTitle);
+            bool isFavorite  = Data.favorites.Any(title => title == movieTitle);
             string imagePath = null;
 
             if (operation == "load")
