@@ -15,7 +15,7 @@ namespace WatchBox
     {
         private static readonly HttpClient client = new HttpClient();
 
-        private static string apiKey = "sigh... still? I really need to hide this don't i?";
+        private static string apiKey = "there you go, no more funky unhandled exceptions (OwO-)";
         private static string apiUrl = "http://www.omdbapi.com";
 
         public async static Task<JObject> fetchMovie(string title)
@@ -27,16 +27,14 @@ namespace WatchBox
                 string responseBody = await client.GetStringAsync(apiRequest);
                 return JObject.Parse(responseBody);
             }
-            catch (HttpRequestException e)
+            catch (HttpRequestException)
             {
-                MessageBox.Show($"Request error: {e.Message}");
+                throw new Exception("Unable to connect to the movie database. Please check your internet connection or try again later.");
             }
-            catch (JsonException e)
+            catch (JsonException)
             {
-                MessageBox.Show($"JSON error: {e.Message}");
+                throw new Exception("Received unexpected data from the movie database. Please try again later.");
             }
-
-            return null;
         }
     }
 }

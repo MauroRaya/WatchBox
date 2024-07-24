@@ -29,7 +29,7 @@ namespace WatchBox
 
         private void displayRecomendations()
         {
-            for (int i = 0; i < 5; i++) 
+            for (int i = 0; i < Data.chosenMovies.Count; i++) 
             {
                 var show = Data.chosenTvShows[i];
 

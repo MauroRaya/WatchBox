@@ -34,6 +34,10 @@ namespace WatchBox
                 this.Hide();
                 home.Show();
             }
+            else
+            {
+                MessageBox.Show("Invalid username or password. Please check your credentials and try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private async void fetchMovieData(List<string> recommendations, string type)
@@ -46,22 +50,30 @@ namespace WatchBox
 
             foreach (string title in movies)
             {
-                JObject movieData = await Search.fetchMovie(title);
-
-                if (movieData != null)
+                try
                 {
-                    byte[] imageBytes = await fetchImageData(movieData["Poster"].ToString());
+                    JObject movieData = await Search.fetchMovie(title);
 
-                    if (type == "movie")
+                    if (movieData != null && movieData["Poster"] != null)
                     {
-                        Data.chosenMovies.Add(movieData);
-                        Data.chosenMoviePosters.Add(imageBytes);
+                        byte[] imageBytes = await fetchImageData(movieData["Poster"].ToString());
+
+                        if (type == "movie")
+                        {
+                            Data.chosenMovies.Add(movieData);
+                            Data.chosenMoviePosters.Add(imageBytes);
+                        }
+                        else if (type == "show")
+                        {
+                            Data.chosenTvShows.Add(movieData);
+                            Data.chosenTvShowPosters.Add(imageBytes);
+                        }
                     }
-                    else if (type == "show")
-                    {
-                        Data.chosenTvShows.Add(movieData);
-                        Data.chosenTvShowPosters.Add(imageBytes);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    showErrorMessage(ex.Message);
+                    break;
                 }
             }
         }
@@ -75,11 +87,15 @@ namespace WatchBox
                     return await httpClient.GetByteArrayAsync(url);
                 }
             }
-            catch (HttpRequestException e)
+            catch (HttpRequestException)
             {
-                MessageBox.Show($"Request error: {e.Message}");
+                throw new Exception("Unable to download the poster image. Please check your internet connection or try again later.");
             }
-            return null;
+        }
+
+        private void showErrorMessage(string message)
+        {
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

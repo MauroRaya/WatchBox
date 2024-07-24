@@ -39,9 +39,9 @@ namespace WatchBox
                     byte[] imageBytes = await webClient.GetByteArrayAsync(posterUrl);
                     pbPoster.Image = Image.FromStream(new System.IO.MemoryStream(imageBytes));
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    MessageBox.Show($"Request error: {e.Message}");
+                    MessageBox.Show($"Request error: {ex.Message}");
                 }
             }
 

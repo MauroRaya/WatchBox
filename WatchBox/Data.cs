@@ -68,7 +68,16 @@ namespace WatchBox
             "Kaguya-sama: Love is War",
             "Frieren: Beyond Journey's End",
             "Daredevil",
-            "86"
+            "86",
+            "The Boys",
+            "The Witcher",
+            "The Good Place",
+            "Gravity Falls",
+            "Game of Thrones",
+            "Parks and Recreation",
+            "Bocchi the Rock",
+            "Friends",
+            "The Simpsons"
         };
     }
 }

@@ -55,9 +55,9 @@ namespace WatchBox
                                 movieControl.Poster = new Bitmap(ms);
                             }
                         }
-                        catch (HttpRequestException e)
+                        catch (HttpRequestException ex)
                         {
-                            MessageBox.Show($"Request error: {e.Message}");
+                            MessageBox.Show($"Request error: {ex.Message}");
                         }
                     }
                 }
