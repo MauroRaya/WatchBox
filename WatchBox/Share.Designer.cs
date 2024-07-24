@@ -1,6 +1,6 @@
 ﻿namespace WatchBox
 {
-    partial class Favorites
+    partial class Share
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Favorites));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Share));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnShows = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.btnShare = new System.Windows.Forms.Button();
             this.tbSearchTitle = new System.Windows.Forms.TextBox();
             this.btnFavorites = new System.Windows.Forms.Button();
@@ -49,7 +49,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel1.Controls.Add(this.btnShows);
-            this.panel1.Controls.Add(this.btnSearch);
+            this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.btnShare);
             this.panel1.Controls.Add(this.tbSearchTitle);
             this.panel1.Controls.Add(this.btnFavorites);
@@ -77,22 +77,21 @@
             this.btnShows.TabIndex = 22;
             this.btnShows.Text = "Shows";
             this.btnShows.UseVisualStyleBackColor = false;
-            this.btnShows.Click += new System.EventHandler(this.btnShows_Click);
             // 
-            // btnSearch
+            // btnAdd
             // 
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(486, 10);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(81, 29);
-            this.btnSearch.TabIndex = 16;
-            this.btnSearch.Text = "search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(486, 10);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(81, 29);
+            this.btnAdd.TabIndex = 16;
+            this.btnAdd.Text = "add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnShare
             // 
-            this.btnShare.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            this.btnShare.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.btnShare.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnShare.FlatAppearance.BorderSize = 0;
             this.btnShare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -104,7 +103,6 @@
             this.btnShare.TabIndex = 18;
             this.btnShare.Text = "Share";
             this.btnShare.UseVisualStyleBackColor = false;
-            this.btnShare.Click += new System.EventHandler(this.btnShare_Click);
             // 
             // tbSearchTitle
             // 
@@ -116,7 +114,7 @@
             // 
             // btnFavorites
             // 
-            this.btnFavorites.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnFavorites.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.btnFavorites.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFavorites.FlatAppearance.BorderSize = 0;
             this.btnFavorites.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -128,6 +126,7 @@
             this.btnFavorites.TabIndex = 21;
             this.btnFavorites.Text = "Favorites";
             this.btnFavorites.UseVisualStyleBackColor = false;
+            this.btnFavorites.Click += new System.EventHandler(this.btnFavorites_Click);
             // 
             // btnMovies
             // 
@@ -199,11 +198,11 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(19, 69);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 26);
+            this.label1.Size = new System.Drawing.Size(144, 26);
             this.label1.TabIndex = 18;
-            this.label1.Text = "My Favorites";
+            this.label1.Text = "My Share Box";
             // 
-            // Favorites
+            // Share
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -213,7 +212,7 @@
             this.Controls.Add(this.flowLayoutPanel);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Favorites";
+            this.Name = "Share";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
             this.panel1.ResumeLayout(false);
@@ -231,7 +230,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnShows;
-        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnShare;
         private System.Windows.Forms.TextBox tbSearchTitle;
         private System.Windows.Forms.Button btnFavorites;

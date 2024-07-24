@@ -103,6 +103,7 @@
             this.btnShare.TabIndex = 18;
             this.btnShare.Text = "Share";
             this.btnShare.UseVisualStyleBackColor = false;
+            this.btnShare.Click += new System.EventHandler(this.btnShare_Click);
             // 
             // tbSearchTitle
             // 

@@ -61,22 +61,24 @@ namespace WatchBox
 
         private async void btnSearch_Click(object sender, EventArgs e)
         {
-            Data.selectedMovieData = await Search.fetchMovie(tbSearchTitle.Text);
-
-            if (Data.selectedMovieData == null)
+            try
             {
-                return;
-            }
+                Data.selectedMovieData = await Search.fetchMovie(tbSearchTitle.Text);
 
-            if (Data.selectedMovieData["Response"].ToString() == "False")
+                if (Data.selectedMovieData == null || Data.selectedMovieData["Response"].ToString() == "False")
+                {
+                    MessageBox.Show("Movie not found. Make sure to type the title correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                SearchedMovie moviePage = new SearchedMovie();
+                moviePage.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Movie not found. Make sure to type the title correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            SearchedMovie moviePage = new SearchedMovie();
-            moviePage.Show();
-            this.Hide();
         }
 
         private void tbSearchTitle_KeyPress(object sender, KeyPressEventArgs e)
@@ -85,6 +87,13 @@ namespace WatchBox
             {
                 btnSearch_Click(sender, e);
             }
+        }
+
+        private void btnShare_Click(object sender, EventArgs e)
+        {
+            Share sharePage = new Share();
+            sharePage.Show();
+            this.Hide();
         }
     }
 }

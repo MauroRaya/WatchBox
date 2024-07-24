@@ -10,6 +10,7 @@ namespace WatchBox
 {
     public partial class Login : Form
     {
+        private bool fetching = true;
         public Login()
         {
             InitializeComponent();
@@ -28,6 +29,12 @@ namespace WatchBox
             string username = tbUsername.Text;
             string password = tbPassword.Text;
 
+            if (fetching)
+            {
+                MessageBox.Show("Data is still being fetched. Please wait a moment and try again.", "Data Fetching", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             if (username == "teste" && password == "123")
             {
                 Movies home = new Movies();
@@ -40,6 +47,7 @@ namespace WatchBox
             }
         }
 
+
         private async void fetchMovieData(List<string> recommendations, string type)
         {
             Random rnd = new Random();
@@ -47,6 +55,8 @@ namespace WatchBox
                              .OrderBy(x => rnd.Next())
                              .Take(5)
                              .ToArray();
+
+            fetching = true;
 
             foreach (string title in movies)
             {
@@ -76,6 +86,8 @@ namespace WatchBox
                     break;
                 }
             }
+
+            fetching = false;
         }
 
         private async Task<byte[]> fetchImageData(string url)

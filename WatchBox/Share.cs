@@ -14,12 +14,11 @@ using System.Xml.Linq;
 
 namespace WatchBox
 {
-    public partial class Movies : Form
+    public partial class Share : Form
     {
-        public Movies()
+        public Share()
         {
             InitializeComponent();
-            displayRecomendations();
             tbSearchTitle.KeyPress += new KeyPressEventHandler(tbSearchTitle_KeyPress);
         }
         private void btnExit_Click(object sender, EventArgs e)
@@ -27,30 +26,10 @@ namespace WatchBox
             Application.Exit();
         }
 
-        private void displayRecomendations()
+        private void btnMovies_Click_1(object sender, EventArgs e)
         {
-            flowLayoutPanel.Controls.Clear();
-
-            for (int i = 0; i < Data.chosenMovies.Count; i++)
-            {
-                var movie = Data.chosenMovies[i];
-
-                MovieControl movieControl = new MovieControl();
-                movieControl.Title  = movie["Title"].ToString();
-                movieControl.Rating = movie["imdbRating"].ToString() + "/10";
-                movieControl.Poster = Image.FromStream(new System.IO.MemoryStream(Data.chosenMoviePosters[i]));
-                movieControl.IsFavorite = Data.favorites.Contains(movie["Title"].ToString());
-
-                Favorite.changeStar(movieControl);
-
-                flowLayoutPanel.Controls.Add(movieControl);
-            }
-        }
-
-        private void btnShows_Click(object sender, EventArgs e)
-        {
-            TvShows tvShowsPage = new TvShows();
-            tvShowsPage.Show();
+            Movies moviesPage = new Movies();
+            moviesPage.Show();
             this.Hide();
         }
 
@@ -63,19 +42,27 @@ namespace WatchBox
 
         private async void btnSearch_Click(object sender, EventArgs e)
         {
+            JObject movie = null;
+
             try
             {
-                Data.selectedMovieData = await Search.fetchMovie(tbSearchTitle.Text);
+                movie = await Search.fetchMovie(tbSearchTitle.Text);
 
-                if (Data.selectedMovieData == null || Data.selectedMovieData["Response"].ToString() == "False")
+                if (movie == null || movie["Response"].ToString() == "False")
                 {
                     MessageBox.Show("Movie not found. Make sure to type the title correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                SearchedMovie moviePage = new SearchedMovie();
-                moviePage.Show();
-                this.Hide();
+                MovieControl movieControl = new MovieControl();
+                movieControl.Title  = movie["Title"].ToString();
+                movieControl.Rating = movie["imdbRating"].ToString() + "/10";
+                movieControl.Poster = await fetchImageData(movie["Poster"].ToString());
+                movieControl.IsFavorite = Data.favorites.Contains(movie["Title"].ToString());
+
+                Favorite.changeStar(movieControl);
+
+                flowLayoutPanel.Controls.Add(movieControl);
             }
             catch (Exception ex)
             {
@@ -91,11 +78,23 @@ namespace WatchBox
             }
         }
 
-        private void btnShare_Click(object sender, EventArgs e)
+        private async Task<Bitmap> fetchImageData(string url)
         {
-            Share sharePage = new Share();
-            sharePage.Show();
-            this.Hide();
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    byte[] imageBytes = await httpClient.GetByteArrayAsync(url);
+                    using (var ms = new System.IO.MemoryStream(imageBytes))
+                    {
+                        return new Bitmap(ms);
+                    }
+                }
+            }
+            catch (HttpRequestException)
+            {
+                throw new Exception("Unable to download the poster image. Please check your internet connection or try again later.");
+            }
         }
     }
 }

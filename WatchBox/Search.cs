@@ -15,7 +15,7 @@ namespace WatchBox
     {
         private static readonly HttpClient client = new HttpClient();
 
-        private static string apiKey = "there you go, no more funky unhandled exceptions (OwO-)";
+        private static string apiKey = "you are my special";
         private static string apiUrl = "http://www.omdbapi.com";
 
         public async static Task<JObject> fetchMovie(string title)

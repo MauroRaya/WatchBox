@@ -35,35 +35,24 @@ namespace WatchBox
 
             foreach (var title in Data.favorites)
             {
-                JObject favoriteData = await Search.fetchMovie(title);
-
-                MovieControl movieControl = new MovieControl();
-                movieControl.Title  = title;
-                movieControl.Rating = favoriteData["imdbRating"].ToString() + "/10";
-                movieControl.IsFavorite = true;
-
-                string posterUrl = favoriteData["Poster"].ToString();
-                if (posterUrl != null)
+                try
                 {
-                    using (WebClient wc = new WebClient())
-                    {
-                        try
-                        {
-                            byte[] imageBytes = await wc.DownloadDataTaskAsync(new Uri(posterUrl));
-                            using (MemoryStream ms = new MemoryStream(imageBytes))
-                            {
-                                movieControl.Poster = new Bitmap(ms);
-                            }
-                        }
-                        catch (HttpRequestException ex)
-                        {
-                            MessageBox.Show($"Request error: {ex.Message}");
-                        }
-                    }
-                }
+                    JObject favoriteData = await Search.fetchMovie(title);
 
-                Favorite.changeStar(movieControl);
-                flowLayoutPanel.Controls.Add(movieControl);
+                    MovieControl movieControl = new MovieControl();
+                    movieControl.Title  = title;
+                    movieControl.Rating = favoriteData["imdbRating"].ToString() + "/10";
+                    movieControl.IsFavorite = true;
+
+                    movieControl.Poster = await fetchImageData(favoriteData["Poster"].ToString());
+
+                    Favorite.changeStar(movieControl);
+                    flowLayoutPanel.Controls.Add(movieControl);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -74,6 +63,24 @@ namespace WatchBox
             movieControl.Dispose();
         }
 
+        private async Task<Bitmap> fetchImageData(string url)
+        {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    byte[] imageBytes = await httpClient.GetByteArrayAsync(url);
+                    using (var ms = new System.IO.MemoryStream(imageBytes))
+                    {
+                        return new Bitmap(ms);
+                    }
+                }
+            }
+            catch (HttpRequestException)
+            {
+                throw new Exception("Unable to download the poster image. Please check your internet connection or try again later.");
+            }
+        }
 
         private void btnMovies_Click_1(object sender, EventArgs e)
         {
@@ -91,22 +98,24 @@ namespace WatchBox
 
         private async void btnSearch_Click(object sender, EventArgs e)
         {
-            Data.selectedMovieData = await Search.fetchMovie(tbSearchTitle.Text);
-
-            if (Data.selectedMovieData == null)
+            try
             {
-                return;
-            }
+                Data.selectedMovieData = await Search.fetchMovie(tbSearchTitle.Text);
 
-            if (Data.selectedMovieData["Response"].ToString() == "False")
+                if (Data.selectedMovieData == null || Data.selectedMovieData["Response"].ToString() == "False")
+                {
+                    MessageBox.Show("Movie not found. Make sure to type the title correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                SearchedMovie moviePage = new SearchedMovie();
+                moviePage.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Movie not found. Make sure to type the title correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            SearchedMovie moviePage = new SearchedMovie();
-            moviePage.Show();
-            this.Hide();
         }
 
         private void tbSearchTitle_KeyPress(object sender, KeyPressEventArgs e)
@@ -115,6 +124,13 @@ namespace WatchBox
             {
                 btnSearch_Click(sender, e);
             }
+        }
+
+        private void btnShare_Click(object sender, EventArgs e)
+        {
+            Share sharePage = new Share();
+            sharePage.Show();
+            this.Hide();
         }
     }
 }

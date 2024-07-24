@@ -63,6 +63,12 @@
     <Compile Include="SearchedMovie.Designer.cs">
       <DependentUpon>SearchedMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Share.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Share.Designer.cs">
+      <DependentUpon>Share.cs</DependentUpon>
+    </Compile>
     <Compile Include="TvShows.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SearchedMovie.resx">
       <DependentUpon>SearchedMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Share.resx">
+      <DependentUpon>Share.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TvShows.resx">
       <DependentUpon>TvShows.cs</DependentUpon>
