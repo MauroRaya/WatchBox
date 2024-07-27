@@ -77,6 +77,7 @@
             this.btnShows.TabIndex = 22;
             this.btnShows.Text = "Shows";
             this.btnShows.UseVisualStyleBackColor = false;
+            this.btnShows.Click += new System.EventHandler(this.btnShows_Click);
             // 
             // btnAdd
             // 

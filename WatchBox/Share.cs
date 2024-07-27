@@ -96,5 +96,12 @@ namespace WatchBox
                 throw new Exception("Unable to download the poster image. Please check your internet connection or try again later.");
             }
         }
+
+        private void btnShows_Click(object sender, EventArgs e)
+        {
+            TvShows tvShowsPage = new TvShows();
+            tvShowsPage.Show();
+            this.Hide();
+        }
     }
 }
