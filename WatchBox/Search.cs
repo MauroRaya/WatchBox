@@ -15,7 +15,7 @@ namespace WatchBox
     {
         private static readonly HttpClient client = new HttpClient();
 
-        private static string apiKey = "bonito flakes";
+        private static string apiKey = "kelp";
         private static string apiUrl = "http://www.omdbapi.com";
 
         public async static Task<JObject> fetchMovie(string title)

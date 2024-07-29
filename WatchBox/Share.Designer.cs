@@ -32,7 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnShows = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnShare = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tbSearchTitle = new System.Windows.Forms.TextBox();
             this.btnFavorites = new System.Windows.Forms.Button();
             this.btnMovies = new System.Windows.Forms.Button();
@@ -41,6 +41,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnShare = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -50,7 +51,7 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel1.Controls.Add(this.btnShows);
             this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Controls.Add(this.btnShare);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.tbSearchTitle);
             this.panel1.Controls.Add(this.btnFavorites);
             this.panel1.Controls.Add(this.btnMovies);
@@ -90,20 +91,20 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // btnShare
+            // button1
             // 
-            this.btnShare.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.btnShare.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnShare.FlatAppearance.BorderSize = 0;
-            this.btnShare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShare.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShare.ForeColor = System.Drawing.Color.White;
-            this.btnShare.Location = new System.Drawing.Point(903, -1);
-            this.btnShare.Name = "btnShare";
-            this.btnShare.Size = new System.Drawing.Size(72, 47);
-            this.btnShare.TabIndex = 18;
-            this.btnShare.Text = "Share";
-            this.btnShare.UseVisualStyleBackColor = false;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(903, -1);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(72, 47);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Share";
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // tbSearchTitle
             // 
@@ -203,12 +204,24 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "My Share Box";
             // 
+            // btnShare
+            // 
+            this.btnShare.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShare.Location = new System.Drawing.Point(946, 66);
+            this.btnShare.Name = "btnShare";
+            this.btnShare.Size = new System.Drawing.Size(81, 29);
+            this.btnShare.TabIndex = 23;
+            this.btnShare.Text = "share";
+            this.btnShare.UseVisualStyleBackColor = true;
+            this.btnShare.Click += new System.EventHandler(this.btnShare_Click);
+            // 
             // Share
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(43)))), ((int)(((byte)(42)))));
             this.ClientSize = new System.Drawing.Size(1052, 595);
+            this.Controls.Add(this.btnShare);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.flowLayoutPanel);
             this.Controls.Add(this.panel1);
@@ -232,11 +245,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnShows;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnShare;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox tbSearchTitle;
         private System.Windows.Forms.Button btnFavorites;
         private System.Windows.Forms.Button btnMovies;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button btnShare;
     }
 }

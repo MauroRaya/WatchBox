@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -102,6 +104,41 @@ namespace WatchBox
             TvShows tvShowsPage = new TvShows();
             tvShowsPage.Show();
             this.Hide();
+        }
+
+        private void btnShare_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string reportPath = @"";
+
+                ReportDocument reportDocument = new ReportDocument();
+                reportDocument.Load(reportPath);
+
+                reportDocument.SetParameterValue("Title",  "title here or something");
+                reportDocument.SetParameterValue("Rating", "rating stuff");
+
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string exportPath  = System.IO.Path.Combine(desktopPath, "relatorio.pdf");
+
+                ExportOptions exportOptions = reportDocument.ExportOptions;
+                PdfRtfWordFormatOptions pdfFormatOptions = new PdfRtfWordFormatOptions();
+                DiskFileDestinationOptions diskOptions = new DiskFileDestinationOptions();
+                diskOptions.DiskFileName = exportPath;
+
+                exportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+                exportOptions.FormatOptions = pdfFormatOptions;
+                exportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                exportOptions.DestinationOptions = diskOptions;
+
+                reportDocument.Export();
+
+                MessageBox.Show("Document exported with success!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error trying to export document: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
