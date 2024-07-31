@@ -15,11 +15,13 @@ namespace WatchBox
     {
         private static readonly HttpClient client = new HttpClient();
 
-        private static string apiKey = "kelp";
+        private static string apiKey = "salmon";
         private static string apiUrl = "http://www.omdbapi.com";
 
         public async static Task<JObject> fetchMovie(string title)
         {
+            Error.setError(false);
+
             string apiRequest = $"{apiUrl}/?apikey={apiKey}&t={title}";
 
             try
@@ -29,11 +31,13 @@ namespace WatchBox
             }
             catch (HttpRequestException)
             {
-                throw new Exception("Unable to connect to the movie database. Please check your internet connection or try again later.");
+                Error.setError("Unable to connect to the movie database. Please check your internet connection or try again later.");
+                return null;
             }
             catch (JsonException)
             {
-                throw new Exception("Received unexpected data from the movie database. Please try again later.");
+                Error.setError("Received unexpected data from the movie database. Please try again later.");
+                return null;
             }
         }
     }

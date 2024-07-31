@@ -55,7 +55,7 @@ namespace WatchBox
                 return;
             }
 
-            SearchedMovie searchedMoviePage = new SearchedMovie();
+            FormSearched searchedMoviePage = new FormSearched();
             searchedMoviePage.Show();
             this.ParentForm.Hide();
         }
@@ -64,16 +64,34 @@ namespace WatchBox
         {
             if (IsFavorite)
             {
-                Favorite.removeFromFavorites(this);
+                Favorites.removeFromFavorites(this);
 
-                if (this.ParentForm is Favorites)
+                if (Error.getError())
                 {
-                    Favorites.removeFavoriteUI(this);
+                    Error.showMessage(Error.getMessage());
+                    return;
+                }
+
+                if (this.ParentForm is FormFavorites)
+                {
+                    FormFavorites.removeFavoriteUI(this);
+
+                    if (Error.getError())
+                    {
+                        Error.showMessage(Error.getMessage());
+                        return;
+                    }
                 }
             }
             else
             {
-                Favorite.addToFavorites(this);
+                Favorites.addToFavorites(this);
+
+                if (Error.getError())
+                {
+                    Error.showMessage(Error.getMessage());
+                    return;
+                }
             }
         }
     }

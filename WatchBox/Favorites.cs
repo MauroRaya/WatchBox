@@ -1,136 +1,286 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using CrystalDecisions.Shared.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Security.Policy;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace WatchBox
 {
-    public partial class Favorites : Form
+    public static class Favorites
     {
-        public Favorites()
+        public static List<string> getFavorites()
         {
-            InitializeComponent();
-            displayFavorites();
-            tbSearchTitle.KeyPress += new KeyPressEventHandler(tbSearchTitle_KeyPress);
-        }
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+            Error.setError(false);
+            string connectionString = "Data Source=watchbox.db;Version=3;";
+            List<string> favoritesList = new List<string>();
 
-        private async void displayFavorites()
-        {
-            flowLayoutPanel.Controls.Clear();
-
-            foreach (var title in Data.favorites)
-            {
-                try
-                {
-                    JObject favoriteData = await Search.fetchMovie(title);
-
-                    MovieControl movieControl = new MovieControl();
-                    movieControl.Title  = title;
-                    movieControl.Rating = favoriteData["imdbRating"].ToString() + "/10";
-                    movieControl.IsFavorite = true;
-
-                    movieControl.Poster = await fetchImageData(favoriteData["Poster"].ToString());
-
-                    Favorite.changeStar(movieControl);
-                    flowLayoutPanel.Controls.Add(movieControl);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        public static void removeFavoriteUI(MovieControl movieControl)
-        {
-            FlowLayoutPanel flowLayoutPanel = (FlowLayoutPanel)movieControl.Parent;
-            flowLayoutPanel.Controls.Remove(movieControl);
-            movieControl.Dispose();
-        }
-
-        private async Task<Bitmap> fetchImageData(string url)
-        {
             try
             {
-                using (var httpClient = new HttpClient())
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
                 {
-                    byte[] imageBytes = await httpClient.GetByteArrayAsync(url);
-                    using (var ms = new System.IO.MemoryStream(imageBytes))
+                    string query = "SELECT title FROM favorites WHERE user_id = @userId";
+
+                    SQLiteCommand command = new SQLiteCommand(query, connection);
+                    command.Parameters.AddWithValue("@userId", Data.userId);
+
+                    connection.Open();
+
+                    using (SQLiteDataReader reader = command.ExecuteReader())
                     {
-                        return new Bitmap(ms);
+                        while (reader.Read())
+                        {
+                            favoritesList.Add(reader.GetString(reader.GetOrdinal("title")));
+                        }
                     }
                 }
             }
-            catch (HttpRequestException)
+            catch (SQLiteException)
             {
-                throw new Exception("Unable to download the poster image. Please check your internet connection or try again later.");
+                Error.setError("Unexpected error trying to retrieve favorites.");
+                return null;
+            }
+            catch (Exception)
+            {
+                Error.setError("Unexpected error trying to retrieve favorites.");
+                return null;
+            }
+
+            return favoritesList;
+        }
+
+
+        public static void addToFavorites(MovieControl movieControl)
+        {
+            Error.setError(false);
+            string connectionString = "Data Source=watchbox.db;Version=3;";
+
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    string query = "INSERT INTO favorites (title, user_id) VALUES (@title, @userId)";
+
+                    SQLiteCommand command = new SQLiteCommand(query, connection);
+                    command.Parameters.AddWithValue("@title",  movieControl.Title);
+                    command.Parameters.AddWithValue("@userId", Data.userId);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SQLiteException)
+            {
+                Error.setError("Unexpected error trying to add movie to favorites.");
+                return;
+            }
+            catch (Exception)
+            {
+                Error.setError("Unexpected error trying to add movie to favorites.");
+                return;
+            }
+
+            movieControl.IsFavorite = true;
+            changeStar(movieControl);
+        }
+
+        public static void addToFavorites(string movieTitle)
+        {
+            string connectionString = "Data Source=watchbox.db;Version=3;";
+
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    string query = "INSERT INTO favorites (title, user_id) VALUES (@title, @userId)";
+
+                    SQLiteCommand command = new SQLiteCommand(query, connection);
+                    command.Parameters.AddWithValue("@title",  movieTitle);
+                    command.Parameters.AddWithValue("@userId", Data.userId);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SQLiteException)
+            {
+                Error.setError("Unexpected error trying to add movie to favorites.");
+                return;
+            }
+            catch (Exception)
+            {
+                Error.setError("Unexpected error trying to add movie to favorites.");
+                return;
             }
         }
 
-        private void btnMovies_Click_1(object sender, EventArgs e)
+        public static void removeFromFavorites(MovieControl movieControl)
         {
-            Movies moviesPage = new Movies();
-            moviesPage.Show();
-            this.Hide();
-        }
+            string connectionString = "Data Source=watchbox.db;Version=3;";
 
-        private void btnShows_Click(object sender, EventArgs e)
-        {
-            TvShows showsPage = new TvShows();
-            showsPage.Show();
-            this.Hide();
-        }
-
-        private async void btnSearch_Click(object sender, EventArgs e)
-        {
             try
             {
-                Data.selectedMovieData = await Search.fetchMovie(tbSearchTitle.Text);
-
-                if (Data.selectedMovieData == null || Data.selectedMovieData["Response"].ToString() == "False")
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
                 {
-                    MessageBox.Show("Movie not found. Make sure to type the title correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                    string query = "DELETE FROM favorites WHERE title = @title AND user_id = @userId";
 
-                SearchedMovie moviePage = new SearchedMovie();
-                moviePage.Show();
-                this.Hide();
+                    SQLiteCommand command = new SQLiteCommand(query, connection);
+                    command.Parameters.AddWithValue("@title",  movieControl.Title);
+                    command.Parameters.AddWithValue("@userId", Data.userId);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SQLiteException)
+            {
+                Error.setError("Unexpected error trying to remove movie from favorites.");
+                return;
+            }
+            catch (Exception)
+            {
+                Error.setError("Unexpected error trying to remove movie from favorites.");
+                return;
+            }
+
+            movieControl.IsFavorite = false;
+            changeStar(movieControl);
+        }
+
+        public static void removeFromFavorites(string movieTitle)
+        {
+            string connectionString = "Data Source=watchbox.db;Version=3;";
+
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    string query = "DELETE FROM favorites WHERE title = @title AND user_id = @userId";
+
+                    SQLiteCommand command = new SQLiteCommand(query, connection);
+                    command.Parameters.AddWithValue("@title",  movieTitle);
+                    command.Parameters.AddWithValue("@userId", Data.userId);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SQLiteException)
+            {
+                Error.setError("Unexpected error trying to remove movie from favorites.");
+                return;
+            }
+            catch (Exception)
+            {
+                Error.setError("Unexpected error trying to remove movie from favorites.");
+                return;
+            }
+        }
+
+        public static void changeStar(MovieControl movieControl)
+        {
+            string favoritePath    = @"C:\Users\Mauro\Desktop\WatchBox\imgs\favorite_icon.png";
+            string notFavoritePath = @"C:\Users\Mauro\Desktop\WatchBox\imgs\not_favorite_icon.png";
+
+            string imagePath = movieControl.IsFavorite ? favoritePath : notFavoritePath;
+
+            try
+            {
+                if (System.IO.File.Exists(imagePath))
+                {
+                    using (System.Drawing.Image image = System.Drawing.Image.FromFile(imagePath))
+                    {
+                        movieControl.FavoriteButton = new Bitmap(image);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Image file not found: " + imagePath);
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("ArgumentException: " + ex.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error loading image: " + ex.Message);
             }
         }
 
-        private void tbSearchTitle_KeyPress(object sender, KeyPressEventArgs e)
+        public static Bitmap changeStar(string movieTitle, string operation)
         {
-            if (e.KeyChar == (char)Keys.Enter)
+            string favoritePath    = @"C:\Users\Mauro\Desktop\WatchBox\imgs\favorite_icon.png";
+            string notFavoritePath = @"C:\Users\Mauro\Desktop\WatchBox\imgs\not_favorite_icon.png";
+
+            bool isFavorite = false;
+            string connectionString = "Data Source=watchbox.db;Version=3;";
+
+            try
             {
-                btnSearch_Click(sender, e);
-            }
-        }
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    string query = "SELECT COUNT(*) FROM favorites WHERE title = @title AND user_id = @userId";
 
-        private void btnShare_Click(object sender, EventArgs e)
-        {
-            Share sharePage = new Share();
-            sharePage.Show();
-            this.Hide();
+                    SQLiteCommand command = new SQLiteCommand(query, connection);
+                    command.Parameters.AddWithValue("@title", movieTitle);
+                    command.Parameters.AddWithValue("@userId", Data.userId);
+
+                    connection.Open();
+                    isFavorite = Convert.ToInt32(command.ExecuteScalar()) > 0;
+                }
+            }
+            catch (SQLiteException)
+            {
+                MessageBox.Show("Unexpected error checking favorite status.");
+                return null;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Unexpected error checking favorite status.");
+                return null;
+            }
+
+            string imagePath = null;
+
+            if (operation == "load")
+            {
+                imagePath = isFavorite ? favoritePath : notFavoritePath;
+            }
+            else if (operation == "change")
+            {
+                imagePath = isFavorite ? notFavoritePath : favoritePath;
+            }
+
+            try
+            {
+                if (System.IO.File.Exists(imagePath))
+                {
+                    return new Bitmap(imagePath);
+                }
+                else
+                {
+                    MessageBox.Show("Image file not found: " + imagePath);
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("ArgumentException: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading image: " + ex.Message);
+            }
+
+            return null;
         }
     }
 }

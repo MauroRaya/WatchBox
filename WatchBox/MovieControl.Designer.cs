@@ -98,11 +98,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(77)))), ((int)(((byte)(75)))));
+            this.Controls.Add(this.pbPoster);
             this.Controls.Add(this.pbFavorite);
             this.Controls.Add(this.lbRating);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lbTitle);
-            this.Controls.Add(this.pbPoster);
             this.Name = "MovieControl";
             this.Size = new System.Drawing.Size(193, 394);
             ((System.ComponentModel.ISupportInitialize)(this.pbPoster)).EndInit();

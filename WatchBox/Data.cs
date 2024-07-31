@@ -5,7 +5,38 @@ namespace WatchBox
 {
     public static class Data
     {
-        public static List<string> favorites = new List<string>(); //turn into a db table later
+        public static string userId;
+
+        public static string createDatabaseCommand = @"
+            CREATE TABLE IF NOT EXISTS `users` (
+              `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+              `username` TEXT UNIQUE NOT NULL,
+              `hash` TEXT NOT NULL,
+              `salt` TEXT NOT NULL
+            );
+
+            CREATE TABLE IF NOT EXISTS `favorites` (
+              `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+              `title` TEXT NOT NULL,
+              `user_id` INTEGER,
+              FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+            );
+
+            CREATE TABLE IF NOT EXISTS `sharebox` (
+              `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+              `title` TEXT NOT NULL,
+              `year` INTEGER NOT NULL,
+              `runtime` INTEGER NOT NULL,
+              `genre` TEXT NOT NULL,
+              `director` TEXT NOT NULL,
+              `writer` TEXT NOT NULL,
+              `actors` TEXT NOT NULL,
+              `plot` TEXT NOT NULL,
+              `poster_url` TEXT NOT NULL,
+              `user_id` INTEGER,
+              FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+            );
+        ";
 
         public static JObject selectedMovieData; //data of the click or search, can be either movie or tv show
 
@@ -26,7 +57,7 @@ namespace WatchBox
             "Whiplash",
             "The Avengers",
             "Saving Private Ryan",
-            "Mission Impossible",
+            "Mission: Impossible - Fallout",
             "Harry Potter and the Sorcerer's Stone",
             "Me before you",
             "The Notebook",
