@@ -31,6 +31,12 @@ namespace WatchBox.BLL
                 return;
             }
         }
+
+        public static string getUserId(string username)
+        {
+            return RegisterDAL.getUserId(username);
+        }
+
         public static bool userExists(string username)
         {
             return RegisterDAL.userExists(username);

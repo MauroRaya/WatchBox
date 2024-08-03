@@ -57,6 +57,8 @@ namespace WatchBox
                 return;
             }
 
+            Data.userId = RegisterBLL.getUserId(username);
+
             FormMovies moviesPage = new FormMovies();
             moviesPage.Show();
             this.Hide();

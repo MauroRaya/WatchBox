@@ -131,6 +131,14 @@
     <Compile Include="DAL\LoginDAL.cs" />
     <Compile Include="DAL\RegisterDAL.cs" />
     <Compile Include="Data.cs" />
+    <Compile Include="ShareDataSet.cs">
+      <DependentUpon>ShareDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ShareDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShareDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Error.cs" />
     <Compile Include="Favorites.cs" />
     <Compile Include="Recomendations.cs" />
@@ -222,6 +230,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ShareDataSet.xsc">
+      <DependentUpon>ShareDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ShareDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ShareDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ShareDataSet.xss">
+      <DependentUpon>ShareDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

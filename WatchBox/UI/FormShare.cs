@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -18,9 +20,13 @@ namespace WatchBox
 {
     public partial class FormShare : Form
     {
+        private static ShareDataSet shareDataSet;
+        private static List<JObject> sharebox = new List<JObject>();
+
         public FormShare()
         {
             InitializeComponent();
+            displayShareBox();
             tbSearchTitle.KeyPress += new KeyPressEventHandler(tbSearchTitle_KeyPress);
         }
         private void btnExit_Click(object sender, EventArgs e)
@@ -40,6 +46,23 @@ namespace WatchBox
             FormFavorites favoritesPage = new FormFavorites();
             favoritesPage.Show();
             this.Hide();
+        }
+
+        private async void displayShareBox()
+        {
+            List<string> favorites = Favorites.getFavorites();
+
+            foreach (JObject movie in sharebox)
+            {
+                MovieControl movieControl = new MovieControl();
+                movieControl.Title  = movie["Title"].ToString();
+                movieControl.Rating = movie["imdbRating"].ToString() + "/10";
+                movieControl.Poster = await fetchImageData(movie["Poster"].ToString());
+                movieControl.IsFavorite = favorites.Contains(movie["Title"].ToString());
+
+                Favorites.changeStar(movieControl);
+                flowLayoutPanel.Controls.Add(movieControl);
+            }
         }
 
         private async void btnSearch_Click(object sender, EventArgs e)
@@ -65,6 +88,8 @@ namespace WatchBox
 
                 Favorites.changeStar(movieControl);
                 flowLayoutPanel.Controls.Add(movieControl);
+
+                sharebox.Add(movie);
             }
             catch (Exception ex)
             {
@@ -99,6 +124,40 @@ namespace WatchBox
             }
         }
 
+        private async Task<string> fetchImageDataAndSaveLocally(string url, string movieTitle)
+        {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    byte[] imageBytes = await httpClient.GetByteArrayAsync(url);
+                    using (var ms = new System.IO.MemoryStream(imageBytes))
+                    {
+                        using (var image = new Bitmap(ms))
+                        {
+                            string sanitizedTitle = string.Join("_", movieTitle.Split(Path.GetInvalidFileNameChars()));
+
+                            string imageDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
+                            if (!Directory.Exists(imageDir))
+                            {
+                                Directory.CreateDirectory(imageDir);
+                            }
+
+                            string imagePath = Path.Combine(imageDir, $"{sanitizedTitle}.png");
+                            image.Save(imagePath, System.Drawing.Imaging.ImageFormat.Png);
+                            return imagePath;
+                        }
+                    }
+                }
+            }
+            catch (HttpRequestException)
+            {
+                throw new Exception("Unable to download the poster image. Please check your internet connection or try again later.");
+            }
+        }
+
+
+
         private void btnShows_Click(object sender, EventArgs e)
         {
             FormShows tvShowsPage = new FormShows();
@@ -106,38 +165,54 @@ namespace WatchBox
             this.Hide();
         }
 
-        private void btnShare_Click(object sender, EventArgs e)
+        private async void btnShare_Click(object sender, EventArgs e)
         {
-            try
+            await LoadDataFromSharebox();
+
+            if (shareDataSet.Tables["Movie"].Rows.Count == 0)
             {
-                string reportPath = @"";
-
-                ReportDocument reportDocument = new ReportDocument();
-                reportDocument.Load(reportPath);
-
-                reportDocument.SetParameterValue("Title",  "title here or something");
-                reportDocument.SetParameterValue("Rating", "rating stuff");
-
-                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string exportPath  = System.IO.Path.Combine(desktopPath, "relatorio.pdf");
-
-                ExportOptions exportOptions = reportDocument.ExportOptions;
-                PdfRtfWordFormatOptions pdfFormatOptions = new PdfRtfWordFormatOptions();
-                DiskFileDestinationOptions diskOptions = new DiskFileDestinationOptions();
-                diskOptions.DiskFileName = exportPath;
-
-                exportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
-                exportOptions.FormatOptions = pdfFormatOptions;
-                exportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
-                exportOptions.DestinationOptions = diskOptions;
-
-                reportDocument.Export();
-
-                MessageBox.Show("Document exported with success!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No data available to generate the PDF.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            catch (Exception ex)
+
+            CrystalReport1 report = new CrystalReport1();
+
+            report.SetDataSource(shareDataSet.Tables["Movie"]);
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog
             {
-                MessageBox.Show("Error trying to export document: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Filter = "PDF files (*.pdf)|*.pdf",
+                FileName = "MovieRecommendations.pdf"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                report.ExportToDisk(ExportFormatType.PortableDocFormat, saveFileDialog.FileName); //problem when pdf already open
+                MessageBox.Show("PDF generated successfully!");
+            }
+        }
+
+        private async Task LoadDataFromSharebox()
+        {
+            shareDataSet = new ShareDataSet();
+            DataTable movieTable = shareDataSet.Tables["Movie"];
+
+            foreach (var movie in sharebox)
+            {
+                DataRow row = movieTable.NewRow();
+
+                row["title"] = movie["Title"].ToString();
+                row["year"] = movie["Year"].ToString();
+                row["runtime"] = movie["Runtime"].ToString();
+                row["genre"] = movie["Genre"].ToString();
+                row["director"] = movie["Director"].ToString();
+                row["writer"] = movie["Writer"].ToString();
+                row["actors"] = movie["Actors"].ToString();
+                row["plot"] = movie["Plot"].ToString();
+                row["poster"] = await fetchImageDataAndSaveLocally(movie["Poster"].ToString(), movie["Title"].ToString());
+                row["rating"] = movie["imdbRating"].ToString() + "/10";
+
+                movieTable.Rows.Add(row);
             }
         }
     }
