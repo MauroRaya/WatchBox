@@ -187,8 +187,8 @@ namespace WatchBox
 
         public static void changeStar(MovieControl movieControl)
         {
-            string favoritePath    = @"C:\Users\Mauro\Desktop\WatchBox\imgs\favorite_icon.png";
-            string notFavoritePath = @"C:\Users\Mauro\Desktop\WatchBox\imgs\not_favorite_icon.png";
+            string favoritePath    = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Images\favorite_icon.png");
+            string notFavoritePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Images\not_favorite_icon.png");
 
             string imagePath = movieControl.IsFavorite ? favoritePath : notFavoritePath;
 
@@ -218,8 +218,8 @@ namespace WatchBox
 
         public static Bitmap changeStar(string movieTitle, string operation)
         {
-            string favoritePath    = @"C:\Users\Mauro\Desktop\WatchBox\imgs\favorite_icon.png";
-            string notFavoritePath = @"C:\Users\Mauro\Desktop\WatchBox\imgs\not_favorite_icon.png";
+            string favoritePath    = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Images\favorite_icon.png");
+            string notFavoritePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Images\not_favorite_icon.png");
 
             bool isFavorite = false;
             string connectionString = "Data Source=watchbox.db;Version=3;";

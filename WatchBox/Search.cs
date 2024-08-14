@@ -8,6 +8,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace WatchBox
 {
@@ -15,18 +16,16 @@ namespace WatchBox
     {
         private static readonly HttpClient client = new HttpClient();
 
-        private static string apiKey = "rice balls";
-        private static string apiUrl = "http://www.omdbapi.com";
-
         public async static Task<JObject> fetchMovie(string title)
         {
             Error.setError(false);
 
-            string apiRequest = $"{apiUrl}/?apikey={apiKey}&t={title}";
+            string apiUrl = "https://api-watchbox.onrender.com/fetchMovie";
+            string requestUrl = $"{apiUrl}?title={Uri.EscapeDataString(title)}";
 
             try
             {
-                string responseBody = await client.GetStringAsync(apiRequest);
+                string responseBody = await client.GetStringAsync(requestUrl);
                 return JObject.Parse(responseBody);
             }
             catch (HttpRequestException)

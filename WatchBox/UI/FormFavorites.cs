@@ -41,10 +41,15 @@ namespace WatchBox
                 {
                     JObject favoriteData = await Search.fetchMovie(title);
 
+                    if (favoriteData == null)
+                    {
+                        return;
+                    }
+
                     MovieControl movieControl = new MovieControl();
                     movieControl.Title  = title;
-                    movieControl.Rating = favoriteData["imdbRating"].ToString() + "/10";
                     movieControl.Poster = await fetchImageData(favoriteData["Poster"].ToString());
+                    movieControl.Rating = favoriteData["imdbRating"].ToString() + "/10";
                     movieControl.IsFavorite = true;
 
                     Favorites.changeStar(movieControl);

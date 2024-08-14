@@ -28,7 +28,7 @@ namespace WatchBox
             InitializeComponent();
             displayShareBox();
             tbSearchTitle.KeyPress += new KeyPressEventHandler(tbSearchTitle_KeyPress);
-            Application.ApplicationExit += new EventHandler(DeleteFilesInFolder);
+            Application.ApplicationExit += new EventHandler(deleteFilesInFolder);
         }
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -49,7 +49,7 @@ namespace WatchBox
             this.Hide();
         }
 
-        private void DeleteFilesInFolder(object sender, EventArgs e)
+        private void deleteFilesInFolder(object sender, EventArgs e)
         {
             string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
 
@@ -156,7 +156,39 @@ namespace WatchBox
             }
         }
 
-        private async Task<string> fetchImageDataAndSaveLocally(string url, string movieTitle)
+        private async Task<string> fetchColorfulImageDataAndSaveLocally(string url, string movieTitle)
+        {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    byte[] imageBytes = await httpClient.GetByteArrayAsync(url);
+                    using (var ms = new System.IO.MemoryStream(imageBytes))
+                    {
+                        using (var image = new Bitmap(ms))
+                        {
+                            string sanitizedTitle = string.Join("_", movieTitle.Split(Path.GetInvalidFileNameChars()));
+
+                            string imageDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Posters");
+                            if (!Directory.Exists(imageDir))
+                            {
+                                Directory.CreateDirectory(imageDir);
+                            }
+
+                            string imagePath = Path.Combine(imageDir, $"{sanitizedTitle}.png");
+                            image.Save(imagePath, System.Drawing.Imaging.ImageFormat.Png);
+                            return imagePath;
+                        }
+                    }
+                }
+            }
+            catch (HttpRequestException)
+            {
+                throw new Exception("Unable to download the poster image. Please check your internet connection or try again later.");
+            }
+        }
+
+        private async Task<string> fetchGrayscaleImageDataAndSaveLocally(string url, string movieTitle)
         {
             try
             {
@@ -204,7 +236,7 @@ namespace WatchBox
 
                                 string sanitizedTitle = string.Join("_", movieTitle.Split(Path.GetInvalidFileNameChars()));
 
-                                string imageDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
+                                string imageDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Posters");
                                 if (!Directory.Exists(imageDir))
                                 {
                                     Directory.CreateDirectory(imageDir);
@@ -234,7 +266,26 @@ namespace WatchBox
 
         private async void btnShare_Click(object sender, EventArgs e)
         {
-            await LoadDataFromSharebox();
+            DialogResult dr = MessageBox.Show(
+                "There is an issue with generating colorful images in Crystal Reports on some machines. " +
+                "Select 'Yes' to generate colorful images (which might encounter issues) or 'No' to generate grayscale images (no issues expected).",
+                "Warning",
+                MessageBoxButtons.YesNoCancel
+            );
+
+            if (dr == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            string imageType = (dr == DialogResult.Yes) ? "colorful" : "grayscale";
+            await LoadDataFromSharebox(imageType);
+
+            if (shareDataSet == null || shareDataSet.Tables["Movie"] == null)
+            {
+                MessageBox.Show("No data available to generate the PDF.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (shareDataSet.Tables["Movie"].Rows.Count == 0)
             {
@@ -249,7 +300,6 @@ namespace WatchBox
             }
 
             CrystalReport1 report = new CrystalReport1();
-
             report.SetDataSource(shareDataSet.Tables["Movie"]);
 
             SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -258,13 +308,24 @@ namespace WatchBox
                 FileName = "MovieRecommendations.pdf"
             };
 
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                report.ExportToDisk(ExportFormatType.PortableDocFormat, saveFileDialog.FileName); //problem when pdf already open
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    report.ExportToDisk(ExportFormatType.PortableDocFormat, saveFileDialog.FileName);
+                }
+            }
+            catch (IOException ioEx)
+            {
+                MessageBox.Show("The file is already open or in use. Please close the file and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while generating the PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private async Task LoadDataFromSharebox()
+        private async Task LoadDataFromSharebox(string typeImage)
         {
             shareDataSet = new ShareDataSet();
             DataTable movieTable = shareDataSet.Tables["Movie"];
@@ -281,8 +342,16 @@ namespace WatchBox
                 row["writer"] = movie["Writer"].ToString();
                 row["actors"] = movie["Actors"].ToString();
                 row["plot"] = movie["Plot"].ToString();
-                row["poster"] = await fetchImageDataAndSaveLocally(movie["Poster"].ToString(), movie["Title"].ToString());
                 row["rating"] = movie["imdbRating"].ToString() + "/10";
+
+                if (typeImage == "colorful")
+                {
+                    row["poster"] = await fetchColorfulImageDataAndSaveLocally(movie["Poster"].ToString(), movie["Title"].ToString());
+                }
+                else if (typeImage == "grayscale")
+                {
+                    row["poster"] = await fetchGrayscaleImageDataAndSaveLocally(movie["Poster"].ToString(), movie["Title"].ToString());
+                }
 
                 movieTable.Rows.Add(row);
             }
