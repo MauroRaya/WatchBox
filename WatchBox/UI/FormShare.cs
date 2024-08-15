@@ -51,7 +51,7 @@ namespace WatchBox
 
         private void deleteFilesInFolder(object sender, EventArgs e)
         {
-            string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
+            string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Posters");
 
             if (Directory.Exists(folderPath))
             {
@@ -199,10 +199,8 @@ namespace WatchBox
                     {
                         using (var originalImage = new Bitmap(ms))
                         {
-                            // Create an 8-bit per pixel image
                             using (var image = new Bitmap(originalImage.Width, originalImage.Height, System.Drawing.Imaging.PixelFormat.Format8bppIndexed))
                             {
-                                // Create a grayscale palette
                                 var palette = image.Palette;
                                 for (int i = 0; i < 256; i++)
                                 {
@@ -210,28 +208,21 @@ namespace WatchBox
                                 }
                                 image.Palette = palette;
 
-                                // Lock bits of the 8-bit image
                                 var rect = new Rectangle(0, 0, image.Width, image.Height);
                                 var imageData = image.LockBits(rect, System.Drawing.Imaging.ImageLockMode.WriteOnly, image.PixelFormat);
 
-                                // Copy pixel data
                                 for (int y = 0; y < image.Height; y++)
                                 {
                                     for (int x = 0; x < image.Width; x++)
                                     {
-                                        // Get the pixel from the original image
                                         Color originalColor = originalImage.GetPixel(x, y);
 
-                                        // Convert to grayscale
                                         byte grayScale = (byte)((originalColor.R * 0.3) + (originalColor.G * 0.59) + (originalColor.B * 0.11));
 
-                                        // Set the pixel in the 8-bit image
                                         IntPtr ptr = imageData.Scan0 + y * imageData.Stride + x;
                                         System.Runtime.InteropServices.Marshal.WriteByte(ptr, grayScale);
                                     }
                                 }
-
-                                // Unlock bits of the 8-bit image
                                 image.UnlockBits(imageData);
 
                                 string sanitizedTitle = string.Join("_", movieTitle.Split(Path.GetInvalidFileNameChars()));

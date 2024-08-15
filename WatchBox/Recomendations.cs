@@ -21,8 +21,10 @@ namespace WatchBox
             }
 
             fetching = true;
+
             await fetchMovieData(Data.movieRecommendations, "movie");
             await fetchMovieData(Data.tvShowRecommendations, "show");
+
             fetchedOnce = true;
             fetching = false;
         }
@@ -30,7 +32,6 @@ namespace WatchBox
         private static async Task fetchMovieData(List<string> recommendations, string type)
         {
             Random rnd = new Random();
-
             string[] movies = recommendations.OrderBy(x => rnd.Next()).Take(5).ToArray();
 
             foreach (string title in movies)

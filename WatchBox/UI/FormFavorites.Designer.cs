@@ -186,9 +186,10 @@
             // 
             // flowLayoutPanel
             // 
+            this.flowLayoutPanel.AutoScroll = true;
             this.flowLayoutPanel.Location = new System.Drawing.Point(23, 115);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(1004, 456);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(1017, 456);
             this.flowLayoutPanel.TabIndex = 1;
             // 
             // label1
@@ -203,7 +204,7 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "My Favorites";
             // 
-            // Favorites
+            // FormFavorites
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -213,7 +214,7 @@
             this.Controls.Add(this.flowLayoutPanel);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Favorites";
+            this.Name = "FormFavorites";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
             this.panel1.ResumeLayout(false);
