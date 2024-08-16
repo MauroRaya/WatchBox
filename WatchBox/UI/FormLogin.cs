@@ -19,7 +19,6 @@ namespace WatchBox
         {
             InitializeComponent();
             createDatabase();
-            _ = Recomendations.FetchData();
         }
 
         private void btnExit_Click(object sender, EventArgs e)

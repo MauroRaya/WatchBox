@@ -19,7 +19,7 @@ namespace WatchBox
         public FormShows()
         {
             InitializeComponent();
-            displayRecomendations();
+            LoadShowData();
             tbSearchTitle.KeyPress += new KeyPressEventHandler(tbSearchTitle_KeyPress);
         }
         private void btnExit_Click(object sender, EventArgs e)
@@ -27,23 +27,22 @@ namespace WatchBox
             Application.Exit();
         }
 
-        private void displayRecomendations()
+        private async void LoadShowData()
         {
-            List<string> favorites = Favorites.getFavorites();
+            pbLoadingSpinner.Visible = true;
+            await Recommendations.fetchRecommendationData("show");
+            pbLoadingSpinner.Visible = false;
+            AddMovieControlToUI();
+        }
 
-            for (int i = 0; i < Data.chosenTvShows.Count; i++) 
+        public void AddMovieControlToUI()
+        {
+            flowLayoutPanel.Controls.Clear();
+
+            for (int i = 0; i < Data.chosenTvShows.Count(); i++)
             {
-                var show = Data.chosenTvShows[i];
-
-                MovieControl showControl = new MovieControl();
-                showControl.Title  = show["Title"].ToString();
-                showControl.Rating = show["imdbRating"].ToString() + "/10";
-                showControl.Poster = Image.FromStream(new System.IO.MemoryStream(Data.chosenTvShowPosters[i]));
-                showControl.IsFavorite = favorites.Contains(show["Title"].ToString());
-
-                Favorites.changeStar(showControl);
-
-                flowLayoutPanel.Controls.Add(showControl);
+                MovieControl movieControl = Recommendations.createMovieControl(Data.chosenTvShows[i], Data.chosenTvShowPosters[i]);
+                flowLayoutPanel.Controls.Add(movieControl);
             }
         }
 

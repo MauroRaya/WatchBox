@@ -141,7 +141,7 @@
     </Compile>
     <Compile Include="Error.cs" />
     <Compile Include="Favorites.cs" />
-    <Compile Include="Recomendations.cs" />
+    <Compile Include="Recommendations.cs" />
     <Compile Include="UI\FormFavorites.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -19,7 +19,7 @@ namespace WatchBox
         public FormMovies()
         {
             InitializeComponent();
-            displayRecomendations();
+            LoadMovieData();
             tbSearchTitle.KeyPress += new KeyPressEventHandler(tbSearchTitle_KeyPress);
         }
         private void btnExit_Click(object sender, EventArgs e)
@@ -27,24 +27,25 @@ namespace WatchBox
             Application.Exit();
         }
 
-        private void displayRecomendations()
+        private async void LoadMovieData()
         {
-            List<string> favorites = Favorites.getFavorites();
+            pbLoadingSpinner.Visible = true;
+            await Recommendations.fetchRecommendationData("movie");
+            pbLoadingSpinner.Visible = false;
+            AddMovieControlToUI();
+        }
+
+        public void AddMovieControlToUI()
+        {
+            flowLayoutPanel.Controls.Clear();
 
             for (int i = 0; i < Data.chosenMovies.Count; i++)
             {
-                var movie = Data.chosenMovies[i];
-
-                MovieControl movieControl = new MovieControl();
-                movieControl.Title  = movie["Title"].ToString();
-                movieControl.Rating = movie["imdbRating"].ToString() + "/10";
-                movieControl.Poster = Image.FromStream(new System.IO.MemoryStream(Data.chosenMoviePosters[i]));
-                movieControl.IsFavorite = favorites.Contains(movie["Title"].ToString());
-
-                Favorites.changeStar(movieControl);
+                MovieControl movieControl = Recommendations.createMovieControl(Data.chosenMovies[i], Data.chosenMoviePosters[i]);
                 flowLayoutPanel.Controls.Add(movieControl);
             }
         }
+
 
         private void btnShows_Click(object sender, EventArgs e)
         {

@@ -41,8 +41,10 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
+            this.pbLoadingSpinner = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoadingSpinner)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -203,22 +205,34 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "Movie Recomendations";
             // 
-            // Movies
+            // pbLoadingSpinner
+            // 
+            this.pbLoadingSpinner.Image = ((System.Drawing.Image)(resources.GetObject("pbLoadingSpinner.Image")));
+            this.pbLoadingSpinner.Location = new System.Drawing.Point(475, 275);
+            this.pbLoadingSpinner.Name = "pbLoadingSpinner";
+            this.pbLoadingSpinner.Size = new System.Drawing.Size(117, 105);
+            this.pbLoadingSpinner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLoadingSpinner.TabIndex = 0;
+            this.pbLoadingSpinner.TabStop = false;
+            // 
+            // FormMovies
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(43)))), ((int)(((byte)(42)))));
             this.ClientSize = new System.Drawing.Size(1052, 595);
+            this.Controls.Add(this.pbLoadingSpinner);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.flowLayoutPanel);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Movies";
+            this.Name = "FormMovies";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoadingSpinner)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,5 +252,6 @@
         private System.Windows.Forms.Button btnShows;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.PictureBox pbLoadingSpinner;
     }
 }
